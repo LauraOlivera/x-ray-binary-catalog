@@ -1,0 +1,590 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: FinalName, datatype: string, description: Source identifier}
+# - {name: FinalDist, unit: kpc, datatype: float64}
+# - {name: Dist_err, unit: kpc, datatype: float64}
+# - {name: l, unit: deg, datatype: float64}
+# - {name: b, unit: deg, datatype: float64}
+# - {name: ra, unit: deg, datatype: float64}
+# - {name: dec, unit: deg, datatype: float64}
+# - {name: companion, datatype: string, description: low or high mass}
+# - {name: Mcomp, unit: solMass, datatype: string, description: Companion mass}
+# - {name: Mcomp_err, unit: solMass, datatype: float64}
+# - {name: Mbh, unit: solMass, datatype: float64}
+# - {name: MbhLimit, datatype: string, description: 'Black hole mass upper or lower limit?'}
+# - {name: Mbh_errn, unit: solMass, datatype: float64}
+# - {name: Mbh_errp, unit: solMass, datatype: float64}
+# - {name: iLimit, datatype: string, description: 'Orbital inclination upper or lower limit?'}
+# - {name: i, unit: deg, datatype: float64}
+# - {name: i_errn, unit: deg, datatype: float64}
+# - {name: i_errp, unit: deg, datatype: float64}
+# - {name: PorbLimit, datatype: string, description: 'Orbital period upper or lower limit?'}
+# - {name: Porb, unit: h, datatype: float64}
+# - {name: Porb error, unit: h, datatype: float64}
+# - {name: ref, datatype: string, description: Additional references other than those in the catalogs}
+# - {name: radio ref, datatype: string, description: Reference for the radio flux}
+# - {name: radio ref link, datatype: string, description: Link to the reference for the radio flux}
+# - {name: jet position angle, unit: deg, datatype: float64}
+# - {name: Lx (2-10 keV), unit: erg / s, datatype: float64}
+# - {name: Lbol, unit: erg / s, datatype: float64}
+# - {name: radio freq (hz), unit: Hz, datatype: float64}
+# - {name: peak radio flux at freq (mJy), unit: mJy, datatype: float64}
+# - {name: err (mJy), unit: mJy, datatype: float64}
+# - {name: Fg (>1 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_errn (>1 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_errp (>1 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: Fg (>50 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_errn (>50 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_errp (>50 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: Fg (>100 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_errn (>100 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_errp (>100 TeV), unit: erg / (s cm2), datatype: float64}
+# - {name: DutyCycle, datatype: float64}
+# - {name: StatesAchieved, datatype: string, description: Observed X-ray accretion states from WATCHDOG}
+# - {name: 'fxpeak [2-10] keV (erg s-1 cm-2)', datatype: float64, description: Peak X-ray flux in the 2-10 keV range as provided in BlackCAT}
+# - {name: Lbol_errp, unit: erg / s, datatype: float64}
+# - {name: Lbol_errn, unit: erg / s, datatype: float64}
+# - {name: LessThan, datatype: string, description: 'Whether the mass accretion rate is an upper limit, as in Table 9 in the WATCHDOG
+#     catalogue'}
+# - {name: Mdot, datatype: float64, description: Mass accretion rate as given in WATCHDOG}
+# - {name: Mdot_errp, datatype: float64, description: Positive uncertainty on Mdot}
+# - {name: Mdpt_errn, datatype: float64, description: Negative uncertainty on Mdpt}
+# - {name: ra_err, datatype: float64, description: Uncertainty on the R.A.}
+# - {name: dec_err, datatype: float64, description: Uncertainty on the dec}
+# - {name: Class, datatype: string, description: 'A, B, C classification which follows that of WATCHDOG catalogue. A are dynamically confirmed
+#     BH, B likely BH and C more dubious'}
+# - {name: Type, datatype: string, description: Source type as given in WATCHDOG (Table 12)}
+# - {name: Year, datatype: int64, description: Year of discovery as given in WATCHDOG (Table 12)}
+# - {name: Tel, datatype: string, description: Telescope of discovery as given in WATCHDOG (Table 12)}
+# - {name: NOutbursts, datatype: int64, description: Number of outbursts as given in WATCHDOG (Table 12)}
+# - {name: SuccessfulOutbursts, datatype: int64, description: Number of outbursts classified as successful in the WATCHDOG catalogue (Table
+#     8)}
+# - {name: IndeterminateOutbursts, datatype: int64, description: Number of outbursts classified as indeterminate in the WATCHDOG catalogue  (Table
+#     8)}
+# - {name: HardOnlyOutbursts, datatype: int64, description: Number of outbursts classified as hard-only in the WATCHDOG catalogue (Table
+#     8)}
+# - {name: TotalOutbursts, datatype: int64, description: Number of outbursts classified as successful in the WATCHDOG catalogue (Table
+#     8)}
+# - {name: tquies, unit: d, datatype: float64}
+# - {name: tout, unit: d, datatype: float64}
+# - {name: trecur, unit: d, datatype: string, description: Median outburst recurrence tim as defined in the WATCHDOG catalogue (Table
+#     8)}
+# - {name: SourceType, datatype: string, description: Source classification from WATCHDOG}
+# - {name: OutburstBehavior, datatype: string, description: Outburst type as classified in the WATCHDOG catalogue (Table 9)}
+# - {name: Xray_Type, datatype: string, description: Type of X-ray binary as defined in the XRBCats}
+# - {name: Ldt_max, unit: erg, datatype: float64}
+# - {name: Ldt_max_err, unit: erg, datatype: float64}
+# - {name: Ldt_mean, unit: erg, datatype: float64}
+# - {name: Ldt_mean_err, unit: erg, datatype: float64}
+# - {name: Lpeak_max, unit: erg / s, datatype: float64}
+# - {name: Lpeak_max_errn, unit: erg / s, datatype: float64}
+# - {name: Lpeak_max_errp, unit: erg / s, datatype: float64}
+# - {name: Lpeak_mean, unit: erg / s, datatype: float64}
+# - {name: Lpeak_mean_errn, unit: erg / s, datatype: float64}
+# - {name: Lpeak_mean_errp, unit: erg / s, datatype: float64}
+# - {name: Ltotedd_max, unit: erg / s, datatype: float64}
+# - {name: Ltotedd_max_errn, unit: erg / s, datatype: float64}
+# - {name: Ltotedd_max_errp, unit: erg / s, datatype: float64}
+# - {name: Ltotedd_mean, unit: erg / s, datatype: float64}
+# - {name: Ltotedd_mean_errn, unit: erg / s, datatype: float64}
+# - {name: Ltotedd_mean_errp, unit: erg / s, datatype: float64}
+# - {name: LpeakHCS_max, unit: erg / s, datatype: float64}
+# - {name: LpeakHCS_max_errn, unit: erg / s, datatype: float64}
+# - {name: LpeakHCS_max_errp, unit: erg / s, datatype: float64}
+# - {name: LpeakHCS_mean, unit: erg / s, datatype: float64}
+# - {name: LpeakHCS_mean_errn, unit: erg / s, datatype: float64}
+# - {name: LpeakHCS_mean_errp, unit: erg / s, datatype: float64}
+# - {name: LpeakSDS_max, unit: erg / s, datatype: float64}
+# - {name: LpeakSDS_max_errn, unit: erg / s, datatype: float64}
+# - {name: LpeakSDS_max_errp, unit: erg / s, datatype: float64}
+# - {name: LpeakSDS_mean, unit: erg / s, datatype: float64}
+# - {name: LpeakSDS_mean_errn, unit: erg / s, datatype: float64}
+# - {name: LpeakSDS_mean_errp, unit: erg / s, datatype: float64}
+# - {name: F5 radio, unit: erg / (s cm2), datatype: float64}
+# - {name: F5 radio_err, unit: erg / (s cm2), datatype: float64}
+# - {name: F5 radio mJy, unit: mJy, datatype: float64}
+# - {name: F5 radio_err mJy, unit: mJy, datatype: float64}
+# - {name: L radio, unit: erg / s, datatype: float64}
+# - {name: Fg_sens_HESS_0p2_1TeV_2p3, unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_sens_WCDA_point_1TeV_2p5, unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_sens_KM2A_point_50TeV_3p0, unit: erg / (s cm2), datatype: float64}
+# - {name: Fg_sens_KM2A_point_100TeV_3p0, unit: erg / (s cm2), datatype: float64}
+# - {name: L radio_errn, unit: erg / s, datatype: float64}
+# - {name: L radio_errp, unit: erg / s, datatype: float64}
+# - {name: Lg (>1 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg_errn (>1 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg_errp (>1 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg (>50 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg_errn (>50 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg_errp (>50 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg (>100 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg_errn (>100 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg_errp (>100 TeV), unit: erg / s, datatype: float64}
+# - {name: Lg_sens_HESS_0p2_1TeV_2p3, unit: erg / s, datatype: float64}
+# - {name: Lg_sens_WCDA_point_1TeV_2p5, unit: erg / s, datatype: float64}
+# - {name: Lg_sens_KM2A_point_50TeV_3p0, unit: erg / s, datatype: float64}
+# - {name: Lg_sens_KM2A_point_100TeV_3p0, unit: erg / s, datatype: float64}
+# - {name: WD, datatype: bool, description: Watchdog catalog flag}
+# - {name: BK, datatype: bool, description: BlackCAT catalog flag}
+# - {name: XR, datatype: bool, description: XRBCat catalog flag}
+# - {name: D_gc, datatype: float64}
+# meta: !!omap
+# - {author: Laura Olivera-Nieto}
+# - {sample: Black hole candidate X-ray binaries}
+# - {reference: 'https://arxiv.org/abs/2607.06360'}
+# - {D_gc: Distance in degrees to the galactic center}
+# - __serialized_columns__:
+#     Dist_err:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id002 !astropy.units.Unit {unit: kpc}
+#       value: !astropy.table.SerializedColumn {name: Dist_err}
+#     DutyCycle:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: ''}
+#       value: !astropy.table.SerializedColumn
+#         __class__: astropy.utils.masked.core.MaskedNDArray
+#         data: !astropy.table.SerializedColumn {name: DutyCycle}
+#     F5 radio:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: F5 radio}
+#     F5 radio mJy:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id001 !astropy.units.Unit {unit: mJy}
+#       value: !astropy.table.SerializedColumn {name: F5 radio mJy}
+#     F5 radio_err:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: F5 radio_err}
+#     F5 radio_err mJy:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: F5 radio_err mJy}
+#     Fg (>1 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg (>1 TeV)}
+#     Fg (>100 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg (>100 TeV)}
+#     Fg (>50 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg (>50 TeV)}
+#     Fg_errn (>1 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_errn (>1 TeV)}
+#     Fg_errn (>100 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_errn (>100 TeV)}
+#     Fg_errn (>50 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_errn (>50 TeV)}
+#     Fg_errp (>1 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_errp (>1 TeV)}
+#     Fg_errp (>100 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_errp (>100 TeV)}
+#     Fg_errp (>50 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_errp (>50 TeV)}
+#     Fg_sens_HESS_0p2_1TeV_2p3:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_sens_HESS_0p2_1TeV_2p3}
+#     Fg_sens_KM2A_point_100TeV_3p0:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_sens_KM2A_point_100TeV_3p0}
+#     Fg_sens_KM2A_point_50TeV_3p0:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_sens_KM2A_point_50TeV_3p0}
+#     Fg_sens_WCDA_point_1TeV_2p5:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: Fg_sens_WCDA_point_1TeV_2p5}
+#     FinalDist:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id002
+#       value: !astropy.table.SerializedColumn {name: FinalDist}
+#     L radio:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: L radio}
+#     L radio_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id003 !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: L radio_errn}
+#     L radio_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id003
+#       value: !astropy.table.SerializedColumn {name: L radio_errp}
+#     Lbol:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lbol}
+#     Lbol_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lbol_errn}
+#     Lbol_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lbol_errp}
+#     Ldt_max:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id004 !astropy.units.Unit {unit: erg}
+#       value: !astropy.table.SerializedColumn {name: Ldt_max}
+#     Ldt_max_err:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id004
+#       value: !astropy.table.SerializedColumn {name: Ldt_max_err}
+#     Ldt_mean:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id004
+#       value: !astropy.table.SerializedColumn {name: Ldt_mean}
+#     Ldt_mean_err:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id004
+#       value: !astropy.table.SerializedColumn {name: Ldt_mean_err}
+#     Lg (>1 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg (>1 TeV)}
+#     Lg (>100 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg (>100 TeV)}
+#     Lg (>50 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg (>50 TeV)}
+#     Lg_errn (>1 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_errn (>1 TeV)}
+#     Lg_errn (>100 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_errn (>100 TeV)}
+#     Lg_errn (>50 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_errn (>50 TeV)}
+#     Lg_errp (>1 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_errp (>1 TeV)}
+#     Lg_errp (>100 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_errp (>100 TeV)}
+#     Lg_errp (>50 TeV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_errp (>50 TeV)}
+#     Lg_sens_HESS_0p2_1TeV_2p3:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_sens_HESS_0p2_1TeV_2p3}
+#     Lg_sens_KM2A_point_100TeV_3p0:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_sens_KM2A_point_100TeV_3p0}
+#     Lg_sens_KM2A_point_50TeV_3p0:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_sens_KM2A_point_50TeV_3p0}
+#     Lg_sens_WCDA_point_1TeV_2p5:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lg_sens_WCDA_point_1TeV_2p5}
+#     LpeakHCS_max:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakHCS_max}
+#     LpeakHCS_max_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakHCS_max_errn}
+#     LpeakHCS_max_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakHCS_max_errp}
+#     LpeakHCS_mean:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakHCS_mean}
+#     LpeakHCS_mean_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakHCS_mean_errn}
+#     LpeakHCS_mean_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakHCS_mean_errp}
+#     LpeakSDS_max:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakSDS_max}
+#     LpeakSDS_max_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakSDS_max_errn}
+#     LpeakSDS_max_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakSDS_max_errp}
+#     LpeakSDS_mean:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakSDS_mean}
+#     LpeakSDS_mean_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakSDS_mean_errn}
+#     LpeakSDS_mean_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: LpeakSDS_mean_errp}
+#     Lpeak_max:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lpeak_max}
+#     Lpeak_max_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lpeak_max_errn}
+#     Lpeak_max_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lpeak_max_errp}
+#     Lpeak_mean:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lpeak_mean}
+#     Lpeak_mean_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lpeak_mean_errn}
+#     Lpeak_mean_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lpeak_mean_errp}
+#     Ltotedd_max:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Ltotedd_max}
+#     Ltotedd_max_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Ltotedd_max_errn}
+#     Ltotedd_max_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Ltotedd_max_errp}
+#     Ltotedd_mean:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Ltotedd_mean}
+#     Ltotedd_mean_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Ltotedd_mean_errn}
+#     Ltotedd_mean_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Ltotedd_mean_errp}
+#     Lx (2-10 keV):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / s}
+#       value: !astropy.table.SerializedColumn {name: Lx (2-10 keV)}
+#     Mbh:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id005 !astropy.units.Unit {unit: solMass}
+#       value: !astropy.table.SerializedColumn {name: Mbh}
+#     Mbh_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id005
+#       value: !astropy.table.SerializedColumn {name: Mbh_errn}
+#     Mbh_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id005
+#       value: !astropy.table.SerializedColumn {name: Mbh_errp}
+#     Mcomp_err:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id005
+#       value: !astropy.table.SerializedColumn {name: Mcomp_err}
+#     Porb:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id006 !astropy.units.Unit {unit: h}
+#       value: !astropy.table.SerializedColumn {name: Porb}
+#     Porb error:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id006
+#       value: !astropy.table.SerializedColumn {name: Porb error}
+#     b:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id007 !astropy.units.Unit {unit: deg}
+#       value: !astropy.table.SerializedColumn {name: b}
+#     dec:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id007
+#       value: !astropy.table.SerializedColumn {name: dec}
+#     err (mJy):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: err (mJy)}
+#     i:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id007
+#       value: !astropy.table.SerializedColumn {name: i}
+#     i_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id007
+#       value: !astropy.table.SerializedColumn {name: i_errn}
+#     i_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id007
+#       value: !astropy.table.SerializedColumn {name: i_errp}
+#     jet position angle:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id007
+#       value: !astropy.table.SerializedColumn {name: jet position angle}
+#     l:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id007
+#       value: !astropy.table.SerializedColumn {name: l}
+#     peak radio flux at freq (mJy):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: peak radio flux at freq (mJy)}
+#     ra:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id007
+#       value: !astropy.table.SerializedColumn {name: ra}
+#     radio freq (hz):
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: Hz}
+#       value: !astropy.table.SerializedColumn {name: radio freq (hz)}
+#     tout:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id008 !astropy.units.Unit {unit: d}
+#       value: !astropy.table.SerializedColumn {name: tout}
+#     tquies:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id008
+#       value: !astropy.table.SerializedColumn {name: tquies}
+# schema: astropy-2.0
+FinalName FinalDist Dist_err l b ra dec companion Mcomp Mcomp_err Mbh MbhLimit Mbh_errn Mbh_errp iLimit i i_errn i_errp PorbLimit Porb "Porb error" ref "radio ref" "radio ref link" "jet position angle" "Lx (2-10 keV)" Lbol "radio freq (hz)" "peak radio flux at freq (mJy)" "err (mJy)" "Fg (>1 TeV)" "Fg_errn (>1 TeV)" "Fg_errp (>1 TeV)" "Fg (>50 TeV)" "Fg_errn (>50 TeV)" "Fg_errp (>50 TeV)" "Fg (>100 TeV)" "Fg_errn (>100 TeV)" "Fg_errp (>100 TeV)" DutyCycle StatesAchieved "fxpeak [2-10] keV (erg s-1 cm-2)" Lbol_errp Lbol_errn LessThan Mdot Mdot_errp Mdpt_errn ra_err dec_err Class Type Year Tel NOutbursts SuccessfulOutbursts IndeterminateOutbursts HardOnlyOutbursts TotalOutbursts tquies tout trecur SourceType OutburstBehavior Xray_Type Ldt_max Ldt_max_err Ldt_mean Ldt_mean_err Lpeak_max Lpeak_max_errn Lpeak_max_errp Lpeak_mean Lpeak_mean_errn Lpeak_mean_errp Ltotedd_max Ltotedd_max_errn Ltotedd_max_errp Ltotedd_mean Ltotedd_mean_errn Ltotedd_mean_errp LpeakHCS_max LpeakHCS_max_errn LpeakHCS_max_errp LpeakHCS_mean LpeakHCS_mean_errn LpeakHCS_mean_errp LpeakSDS_max LpeakSDS_max_errn LpeakSDS_max_errp LpeakSDS_mean LpeakSDS_mean_errn LpeakSDS_mean_errp "F5 radio" "F5 radio_err" "F5 radio mJy" "F5 radio_err mJy" "L radio" Fg_sens_HESS_0p2_1TeV_2p3 Fg_sens_WCDA_point_1TeV_2p5 Fg_sens_KM2A_point_50TeV_3p0 Fg_sens_KM2A_point_100TeV_3p0 "L radio_errn" "L radio_errp" "Lg (>1 TeV)" "Lg_errn (>1 TeV)" "Lg_errp (>1 TeV)" "Lg (>50 TeV)" "Lg_errn (>50 TeV)" "Lg_errp (>50 TeV)" "Lg (>100 TeV)" "Lg_errn (>100 TeV)" "Lg_errp (>100 TeV)" Lg_sens_HESS_0p2_1TeV_2p3 Lg_sens_WCDA_point_1TeV_2p5 Lg_sens_KM2A_point_50TeV_3p0 Lg_sens_KM2A_point_100TeV_3p0 WD BK XR D_gc
+"GRS 1716-249" 6.9 1.1 0.142 6.991 259.904 -25.018 L 1.6 0.0 6.4 "" 2.0 3.2 "" 61.0 15.0 15.0 False 6.7 0.0 "Casares 2023 (distance), Saikia 2022, Bassi 2018, Hjellming 96" "Hjellming 1996" https://ui.adsabs.harvard.edu/abs/1996ApJ...470L.105H/abstract nan 1.12245e+38 0.0 4900000000.0 15.5 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" 1.97e-08 0.0 0.0 "" "" "" "" 0.5 0.5 B BHC,T,R,J? 1993 G,CG 2 "" "" "" "" 0.0 0.0 "" "" "" "BH?, XT, RP, PSH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 7.750000000000001e-16 5e-17 15.816326530612246 1.0204081632653061 4.4147980133501955e+30 nan nan nan nan 1.295888251692954e+30 1.545410843489944e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 6.992434828726313
+"KS 1732-273" 5.0 3.0 0.161 2.59 264.008 -27.428 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 3.59024e+36 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.2e-09 0.0 0.0 0 "" "" "" 7.0 7.0 B BHC,T 1988 GS 1 "" "" "" "" 0.0 0.0 0 0 0 "BH?, XT, US" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 1.0170136053061417e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.0421296991386147e+33 nan nan nan True True True 2.594995826950861
+"GRS 1739-278" 7.25 1.25 0.672 1.176 265.667 -27.748 L "" 0.0 9.5 "" 0.0 0.0 "" 70.0 11.0 5.0 "" 0.0 0.0 "Xie et al 2020, Draghis, Fender and Kuulkers 2001" "Fender 2001" "https://ui.adsabs.harvard.edu/abs/2001MNRAS.324..923F
+" nan 4.52908e+37 1.00268225e+37 5000000000.0 10.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 9.66 HCS,SDS,IMS 7.2e-09 6.09725e+34 6.5177499999999995e+34 no 8.419e-10 0.0 0.0 0.4 0.4 B BHC,T,R 1996 G 2 2 0 0 2 6385.0 683.0 3510 T successful-only "BH, XT, RP" 2.7542750000000003e+45 2.039425e+44 1.475955e+45 1.0239175e+44 6.93825e+38 5.67675e+38 1.0302250000000001e+39 4.58345e+38 2.98555e+38 5.4665e+38 0.7148500000000001 0.567675 0.9881749999999999 0.47201125 0.3008944891745 0.5247032967990001 6.93825e+38 5.67675e+38 1.0302250000000001e+39 4.3732e+38 2.9435e+38 5.34035e+38 2.2286500000000002e+38 1.89225e+38 5.1931750000000006e+38 2.2286500000000002e+38 1.33719e+38 3.1958e+38 5e-16 5e-18 10.0 0.1 3.144538902463153e+30 5.503605783410981e-13 nan nan nan 9.787592965691848e+29 1.1547345748944173e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.461260497951406e+33 nan nan nan True True True 1.354435891216417
+"XTE J1748-288" 5.0 3.0 0.676 -0.222 267.021 -28.474 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Brocksopp et al" "Brocksopp 2007" https://ui.adsabs.harvard.edu/abs/2007MNRAS.378.1111B nan 4.8169e+37 8.66e+35 4800000000.0 483.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.1 HCS 1.61e-08 2.2e+34 2.3e+34 yes 1.528e-10 0.0 0.0 0.6 0.6 B BHC,T 1998 Rx,CG 1 0 0 1 1 6990.0 78.0 >6195 T hard-only "XT, MQ, RP, BH" 3.07e+44 5.2e+43 3.07e+44 5.2e+43 2.5e+38 2.1e+38 3.6e+38 2.5e+38 2.1e+38 3.6e+38 0.27 0.24 0.35 0.27 0.24 0.35 2.5e+38 2.1e+38 3.6e+38 2.5e+38 2.1e+38 3.6e+38 0.0 0.0 0.0 0.0 0.0 0.0 2.4150000000000006e-14 2.415000000000001e-16 503.12500000000006 5.031250000000001 7.223839666538423e+31 3.2328473867338623e-12 nan nan nan 4.705188110059749e+31 7.139636056863312e+31 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 9.670215812899854e+33 nan nan nan True True True 0.7115178937680126
+"IGR J17497-2821" 5.0 3.0 0.953 -0.453 267.408 -28.355 L 1 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 3.26113e+36 5.62e+35 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.4 HCS 1.09e-09 1.13e+35 8.3e+34 yes 0.0 0.0 0.0 0.6 0.6 C BHC,T 2006 I 1 0 0 1 1 6969.0 99.0 >6188 T combined "XT, BH?" 3.65e+43 6.5e+42 3.65e+43 6.5e+42 2e+38 1.9e+38 8.8e+38 2e+38 1.9e+38 8.8e+38 0.23 0.23 0.84 0.23 0.23 0.84 2e+38 1.9e+38 8.8e+38 2e+38 1.9e+38 8.8e+38 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 1.3980826038038598e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.1819977517414664e+33 nan nan nan True True True 1.0551772720507335
+"MAXI J1803-298" 5.0 3.0 1.147 -3.728 270.921 -29.804 L "" 0.0 6.0 "" 0.4 0.4 > 70.0 0.0 0.0 "" 0.0 0.0 "Wood 2023, Espinasse et al" "Espinasse et al 2021" https://ui.adsabs.harvard.edu/abs/2021ATel14607....1E/abstract 313.9 1.18478e+37 0.0 1280000000.0 20.6 0.024 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 3.96e-09 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.03e-15 1.2e-18 80.46875 0.09375 3.080975095873529e+30 3.5358116370885804e-12 nan nan nan 2.009429160622957e+30 3.0529698168178716e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.057645397822304e+34 nan nan nan False True False 3.9002225388854317
+"Swift J174510.8-262411" 5.0 3.0 2.111 1.403 266.295 -26.404 L 1 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 < 21.0 0.0 "Curran et al 2014" "Curran 2014" https://ui.adsabs.harvard.edu/abs/2014MNRAS.437.3265C nan 8.6764e+37 1.7708e+36 5000000000.0 16.66 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.05 HCS 2.9e-08 4e+33 4.1e+33 yes 3.1259e-10 0.0 0.0 0.01 0.01 B BHC,T,R,J 2012 Sw 1 0 0 1 1 6782.0 286.0 >6090 T hard-only "XT, BH?, MQ?, RP?" 1.59e+44 1.7e+43 1.59e+44 1.7e+43 1.7e+38 1.4e+38 2.5e+38 1.7e+38 1.4e+38 2.5e+38 0.17 0.16 0.25 0.17 0.16 0.25 1.7e+38 1.4e+38 2.5e+38 1.7e+38 1.4e+38 2.5e+38 0.0 0.0 0.0 0.0 0.0 0.0 8.33e-16 8.330000000000001e-18 16.66 0.1666 2.491701218313252e+30 5.333025895673419e-13 nan nan nan 1.6196497436156272e+30 2.5048168918886274e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.5952349485648957e+33 nan nan nan True True True 2.5345293836187364
+"Swift J1753.7-2544" 5.0 3.0 3.648 0.103 268.416 -25.754 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 2.12123e+37 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 7.09e-09 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 2.62654872803029e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 7.856632251611282e+33 nan nan nan False True False 3.6494518301334717
+"CXOU J174805.0-244643" 5.5 0.9 3.84 1.686 267.0212718 -24.77902889 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Ortolani 2007" "" "" nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 "" 0.0 0.0 0 "" "" "" "" "" C 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "BH?, RP?, GC" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 2.5530107359232337e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 9.240361768176167e+33 nan nan nan False False True 4.193320687336944
+"GRS 1758-258" 5.0 3.0 4.508 -1.361 270.302 -25.743 L 2 0.0 10.0 "" 0.0 0.0 "" 67.0 13.0 8.0 False 24.0 0.0 "Marti et al 2007, 2016, Soria et al 2011 for radio/xray, Draghis 24" "Soria 2011" https://ui.adsabs.harvard.edu/abs/2011MNRAS.415..410S 13.0 5.56e+36 6.39e+37 5000000000.0 0.5 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 95.23 "" 1.86e-09 4.9e+36 3.5e+36 no 1.128e-08 8.7e-10 6.1e-10 0.15 0.2 B BHC,P,R,J,W 1990 G 0 "" "" "" "" 337.0 6731.0 "" P mainly-IMS "MQ, RP, BH?, XT, US" 3.95e+45 7.8e+43 3.22e+45 5.81e+43 7e+39 6.5e+39 3.3e+40 3.63e+39 3.25e+39 1.65e+40 7.7 7.5 30.6 3.975 3.751762919 15.30158162 7e+39 6.5e+39 3.3e+40 3.63e+39 3.25e+39 1.65e+40 1.8e+39 1.7e+39 6.6e+39 9.75e+38 8.52e+38 3.3e+39 2.5e-17 2.5e-19 0.5 0.005 7.478094892896915e+28 1.8894100389814875e-12 nan nan nan 4.780484931035297e+28 7.291338121675146e+28 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.65167502523825e+33 nan nan nan True False True 4.708562523914575
+"MAXI J1727-203" 5.0 3.0 5.179 7.849 262.1242465 -20.38205689 L "" 0.0 11.5 > 0.0 3.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 "" 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan False False True 9.394719540967586
+"MAXI J1659-152" 8.6 3.7 5.515 16.526 254.757 -15.258 L 0.25 0.0 5.7 "" 0.0 0.0 False 72.5 7.5 7.5 False 2.414 0.005 "" "Jonker 2012" https://ui.adsabs.harvard.edu/abs/2012MNRAS.423.3308J nan 6.01877e+37 6.420138888888888e+36 5000000000.0 4.92 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.25 HCS,SDS,IMS 6.8e-09 4.173090277777778e+35 3.852083333333333e+35 yes 3.54e-10 0.0 0.0 0.7 0.7 B BHC,T,R 2010 Sw 1 1 0 0 1 6909.0 159.0 >3698 T successful-only "BH?, XT" 1.0240121527777777e+45 1.4124305555555554e+44 1.0240121527777777e+45 1.4124305555555554e+44 1.3482291666666665e+39 1.1877256944444445e+39 2.824861111111111e+39 1.3482291666666665e+39 1.1877256944444445e+39 2.824861111111111e+39 1.540833333333333 1.3482291666666666 2.696458333333333 1.540833333333333 1.3482291666666666 2.696458333333333 3.2742708333333333e+38 2.921163194444444e+38 5.360815972222222e+38 3.2742708333333333e+38 2.921163194444444e+38 5.360815972222222e+38 1.091423611111111e+39 9.309201388888888e+38 2.182847222222222e+39 1.091423611111111e+39 9.309201388888888e+38 2.182847222222222e+39 2.46e-16 2.46e-18 4.92 0.0492 2.1769224796247894e+30 nan 7.995428605661836e-12 3.318398618589364e-13 1.659199309294682e-13 1.4674239473785576e+30 2.2284145300545664e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 7.075377343861925e+34 2.9365433126679e+33 1.46827165633395e+33 True True True 17.397563661890562
+"XTE J1752-223" 6.0 2.0 6.423 2.114 268.063 -22.342 L 0.6 0.07 9.6 False 0.9 0.9 "" 35.0 4.0 4.0 False 0.0 0.0 "Garcia 2018, Brockshopp 2013" "Brocksopp 2013" https://ui.adsabs.harvard.edu/abs/2013MNRAS.432..931B -51.0 2.23169e+36 4.146612244897959e+36 5500000000.0 20.0 0.07 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.71 HCS,SDS,IMS 5.18e-10 2.5861224489795924e+35 2.1453061224489795e+35 yes 2.49e-10 0.0 0.0 0.3 0.3 B BHC,T,R,J 2009 Rx 1 1 0 0 1 6735.0 333.0 >5004 T successful-only "XT, BH" 1.7720816326530614e+44 8.816326530612246e+42 1.7720816326530614e+44 8.816326530612246e+42 4.4081632653061226e+38 3.23265306122449e+38 5.583673469387755e+38 4.4081632653061226e+38 3.23265306122449e+38 5.583673469387755e+38 0.34677551020408165 0.23510204081632655 0.39967346938775516 0.34677551020408165 0.23510204081632655 0.39967346938775516 4.114285714285714e+38 1.9983673469387758e+38 2.9093877551020407e+38 4.114285714285714e+38 1.9983673469387758e+38 2.9093877551020407e+38 1.8808163265306123e+38 5.877551020408164e+37 7.640816326530612e+37 1.8808163265306123e+38 5.877551020408164e+37 7.640816326530612e+37 9.999999999999999e-16 3.500000000000001e-18 18.18181818181818 0.06363636363636364 4.3073826583086227e+30 1.4904038088589187e-12 nan nan nan 2.3348276157835974e+30 3.2952122875414267e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.419739520156027e+33 nan nan nan True True True 6.760561147006435
+"V4641 Sgr" 6.2 0.7 6.774 -4.789 274.84 -25.407 L 2.900000095 0.0 6.4 "" 0.6 0.6 False 72.3 4.1 4.1 False 67.6 0.0002 "Marti 2026" "Marti 2026" https://ui.adsabs.harvard.edu/abs/2026MNRAS.545f2104M 162.0 1.26968e+39 1.31e+37 4900000000.0 420.0 20.0 1.11e-11 8.5e-13 8.97e-13 5.1e-12 6.02e-13 7.27e-13 3.39e-12 4.95e-13 6.63e-13 28.18 HCS,SDS,IMS 2.76e-07 4.2e+35 3.6e+35 no 2.312e-09 0.0 0.0 0.7 0.7 A BH,T,R,J 1999 Be,Rx 26 1 19 4 24 5076.0 1992.0 221 T combined "XT, MQ, BH" 3.23e+44 2.2e+43 4.9e+43 2.76e+42 2.4e+39 4e+37 4e+37 3.98e+38 3.13e+37 5.52e+37 2.979290675 0.07805219149 0.07805219149 0.4925438343 0.03756171012 0.0558448786 2.4e+39 4e+37 4e+37 3.92e+38 2.9e+37 5e+37 6.4e+37 4.8e+37 1.36e+38 1.19e+37 1.13e+37 1.74e+37 2.1000000000000002e-14 1e-15 428.57142857142856 20.408163265306122 9.658587714147372e+31 4.006234084339107e-12 nan nan nan 2.0819487630426687e+31 2.2888119699467953e+31 5.105253506049325e+34 1.164714643778135e+34 1.299211404544674e+34 2.345657016292933e+34 5.701798516367892e+33 6.548709540791155e+33 1.5591720167123612e+34 4.0131168748775403e+33 4.744563297602143e+33 nan nan nan nan True True True 8.28942627808429
+"XTE J1818-245" 3.55 0.75 7.443 -4.192 274.602 -24.538 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 0.0 0.0 "Cadolle Bel 2009" "Caldolle Bel 2009" https://ui.adsabs.harvard.edu/abs/2009A&A...501....1C nan 2.54885e+37 1.75e+35 4900000000.0 27.33 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.78 HCS,SDS,IMS 1.69e-08 9.5e+34 8.1e+34 yes 0.0 0.0 0.0 7.0 7.0 B BHC,T,R 2005 Rx 1 1 0 0 1 6942.0 126.0 >3581 T successful-only "RP, XT, BH?" 2.73e+43 2.6e+42 2.73e+43 2.6e+42 5.4e+37 2.4e+37 3.1e+37 5.4e+37 2.4e+37 3.1e+37 0.057 0.026 0.032 0.057 0.026 0.032 1.08e+37 6.1e+36 9.8e+36 1.08e+37 6.1e+36 9.8e+36 5.4e+37 2.4e+37 3.1e+37 5.4e+37 2.4e+37 3.1e+37 1.3665e-15 1.3665000000000001e-17 27.887755102040817 0.2788775510204082 2.0605221935694025e+30 1.3515563596990011e-12 nan nan nan 7.806961513871611e+29 9.646069915782561e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.0379889315914102e+33 nan nan nan True True True 8.536516706651074
+"MAXI J1828-249" 5.0 3.0 8.115 -6.545 277.242 -25.029 L "" 0.0 4.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Corbel 2014" "Corbel 2014" https://ui.adsabs.harvard.edu/abs/2014ATel.5911....1C nan 3.5079e+37 0.0 5500000000.0 1.38 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 4.58e-09 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.899999999999999e-17 6.899999999999999e-19 1.2545454545454544 0.012545454545454544 2.0639541904395483e+29 nan nan nan nan 1.3156502759009973e+29 2.0409342247686637e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan False True True 10.411684791780841
+"Swift J1727.8-1613" 5.5 1.4 8.642 10.255 261.93 -16.205 L 0.3 0.0 3.12 > 0.0 3.0 < 74.0 0.0 0.0 "" 10.8 0.001 "Wood 2024, Mata-Sanchez 25, Burridge2025" "Wood 2024" https://ui.adsabs.harvard.edu/abs/2024ApJ...971L...9W -0.6 5.97325e+38 1.8e+39 1280000000.0 95.57 0.0 0.0 0.0 0.0 1.81e-13 0.0 0.0 5.22e-14 0.0 0.0 "" 0 1.65e-07 0.0 0.0 0 "" "" "" "" "" A 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.7785e-15 4.7784999999999996e-17 373.3203125 3.733203125 1.729529299972263e+31 nan 9.153933600941111e-12 3.979609853112088e-13 1.989804926556044e-13 7.577892622905401e+30 1.0135710394062922e+31 0.0 0.0 0.0 6.551110249973414e+32 0.0 0.0 1.8893257185006198e+32 0.0 0.0 nan 3.313172830977976e+34 nan nan False True False 13.38091069522515
+"MAXI J1810-222" 5.0 3.0 8.77 -1.981 273.166 -22.324 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Russel 22" "Russel 2022" https://ui.adsabs.harvard.edu/abs/2022MNRAS.513.6196R nan 6.7e+35 0.0 5500000000.0 570.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 2.24e-10 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "BH?, XT" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.85e-14 2.85e-16 518.1818181818181 5.181818181818182 8.525028177902483e+31 1.8091429622001438e-12 nan nan nan 5.5226193041869085e+31 8.355846101302059e+31 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.411577098459717e+33 nan nan nan False True True 8.989247055665091
+"XTE J1812-182" 5.0 3.0 12.358 0.034 273.116 -18.209 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 0.0 3.84e+35 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.63 HCS,SDS,IMS "" 4.6e+34 3.8e+34 no 0.0 0.0 0.0 2.0 2.0 C BHC,T 2003 X 2 1 0 1 2 6953.0 115.0 2250 T combined 0 1.88e+44 3.5e+43 1.07e+44 1.77e+43 1.5e+38 1.4e+38 5.5e+38 1.05e+38 7.7e+37 3.15e+38 0.16 0.14 0.53 0.116 0.07917701687 0.2990104513 5.5e+37 5e+37 1.65e+38 2.86e+37 2.5e+37 8.27e+37 1.5e+38 1.4e+38 5.5e+38 7.5e+37 7e+37 2.75e+38 nan nan nan nan nan 2.4718853517645354e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 7.393997289942827e+33 nan nan nan True False False 12.358046043690646
+"MAXI J1836-194" 7.0 3.0 13.945 -5.355 278.931 -19.32 L 0.65 0.0 7.0 "" 0.0 0.0 "" 9.5 5.5 5.5 < 4.9 0.0 "Russel 13, 15" "Russel 2015" https://ui.adsabs.harvard.edu/abs/2015MNRAS.450.1745R nan 5.92269e+36 1.15836e+37 5000000000.0 28.6 0.7 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.12 HCS 1.01e-09 1.2152e+36 9.8e+35 yes 1.043e-09 1.1e-10 0.0 1.8 1.8 B BHC,T,R,J 2011 Mx 1 "" "" 1 1 6706.0 362.0 >5565 T hard-only "XT, BH?" 1.42688e+45 1.47e+44 1.42688e+45 1.47e+44 9.212e+38 9.408000000000001e+38 5.0568e+39 9.212e+38 9.408000000000001e+38 5.0568e+39 0.9996 0.9996 4.8608 0.9996 0.9996 4.8608 9.212e+38 9.408000000000001e+38 5.0568e+39 9.212e+38 9.408000000000001e+38 5.0568e+39 0.0 0.0 0.0 0.0 0.0 0.0 1.43e-15 3.5e-17 28.6 0.7 8.38384174632459e+30 nan nan nan nan 5.717389073902767e+30 8.735952498951637e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 14.918788470667385
+"IGR J18175-1530" 5.0 3.0 15.312 0.247 274.393 -15.511 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 0.0 7.3e+33 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" N/A "" 3.2e+33 2.8e+33 yes 0.0 0.0 0.0 150.0 150.0 C BHC,T 2007 I 1 0 1 0 1 0.0 0.0 >4240 T undefined "XT, BH?, RP?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 3.1069925396233372e-12 8.260857597958533e-12 3.4461252071714053e-13 1.7230626035857027e-13 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 9.293754017130438e+33 2.4710190805696954e+34 1.0308180524812725e+33 5.1540902624063624e+32 True False True 15.313944417384747
+"MAXI J1813-095" 5.0 3.0 20.112 3.948 273.392 -9.533 L "" 0.0 7.4 "" 1.5 1.5 "" 36.5 8.5 8.5 "" 0.0 0.0 "Russel 18 (Atel)" "Russel 2018" https://ui.adsabs.harvard.edu/abs/2018ATel11356....1R nan 2.12422e+36 0.0 5500000000.0 0.69 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 7.1e-10 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.4499999999999994e-17 3.4499999999999995e-19 0.6272727272727272 0.006272727272727272 1.0319770952197742e+29 2.273135612663457e-11 4.28111880412306e-12 1.6138196587984924e-13 8.069098293992462e-14 6.640763870136779e+28 1.002511691901298e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.799489526368279e+34 1.2805845065999043e+34 4.82731861940706e+32 2.41365930970353e+32 False True False 20.480077019141177
+"Swift J1842.5-1124" 5.0 3.0 21.727 -3.179 280.573 -11.418 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Zhang 2022" "Zhang 2022" https://ui.adsabs.harvard.edu/abs/2022MNRAS.510.1258Z nan 2.94699e+37 2.06e+36 1280000000.0 0.229 0.031 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.23 HCS,SDS,IMS 9.85e-09 5.5e+35 4.8e+35 yes 3.63e-10 0.0 0.0 0.6 0.6 C BHC,T 2008 Sw 2 1 0 0 1 6840.0 228.0 >4542 T successful-only "RP, XT?, BH?" 1.88e+44 2.1e+43 1.88e+44 2.1e+43 9.2e+38 8.9e+38 4.89e+39 9.2e+38 8.9e+38 4.89e+39 0.93 0.79 4.66 0.93 0.79 4.66 2e+38 1.9e+38 7.7e+38 2e+38 1.9e+38 7.7e+38 1.06e+38 9.9e+37 3.49e+38 1.06e+38 9.9e+37 3.49e+38 1.145e-17 1.55e-18 0.89453125 0.12109375 3.424967460946787e+28 5.578231291048345e-12 5.119205158558632e-12 1.980309640648276e-13 9.90154820324138e-14 2.2450550751691224e+28 3.3063565604537864e+28 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.6685817171594558e+34 1.531276078076354e+34 5.923577364034559e+32 2.9617886820172795e+32 True True True 21.947194671450674
+"Swift J1753.5-0127" 3.9 0.7 24.898 12.186 268.368 -1.452 L 0.2 0.0 8.8 "" 1.3 1.3 "" 79.0 5.0 5.0 False 3.2 0.02 "Yanes-Rizo 2025" "Tomsick 2015" https://ui.adsabs.harvard.edu/abs/2015ApJ...808...85T/abstract nan 1.02662e+37 8.213399999999998e+36 10000000000.0 0.256 0.008 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 51.32 HCS,IMS 5.64e-09 2.98116e+35 2.3119199999999998e+35 yes 2.383e-09 0.0 0.0 0.05 0.05 B BHC,P,R,J 2005 Sw 1 0 1 0 1 3441.0 3627.0 >3627 P combined "RP, BH?, XT, MQ?, PSH" 3.01158e+45 7.300799999999999e+43 3.01158e+45 7.300799999999999e+43 8.517599999999999e+38 7.9092e+38 3.16368e+39 8.517599999999999e+38 7.9092e+38 3.16368e+39 0.9125999999999999 0.8517599999999999 3.1028399999999996 0.9125999999999999 0.8517599999999999 3.1028399999999996 8.517599999999999e+38 7.9092e+38 3.16368e+39 8.517599999999999e+38 7.9092e+38 3.16368e+39 0.0 0.0 0.0 0.0 0.0 0.0 1.2800000000000001e-17 4.0000000000000004e-19 0.128 0.004 2.329432541613304e+28 nan 2.536172259270998e-12 8.93155933852388e-14 4.46577966926194e-14 7.628045361137842e+27 9.059474439568796e+27 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 4.6155017124084334e+33 1.6254269508209155e+32 8.127134754104578e+31 True True True 27.54840593383246
+"MAXI J1910.2-0546" 5.0 3.0 29.902 -6.844 287.595 -5.799 L 0.3 0.0 9.0 "" 1.5 1.5 "" 15.5 2.5 2.5 < 4.5 0.0 "Corral-Santana 2025, King et al 2012" "King 2012" https://ui.adsabs.harvard.edu/abs/2012ATel.4295....1K nan 5.83413e+37 2.92e+36 6000000000.0 2.5 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.82 HCS,SDS,IMS 1.95e-08 3.3e+35 2.6e+35 yes 5.16e-10 0.0 0.0 3.5 3.5 C BHC,T,R 2012 Sw,Mx 1 1 "" "" 1 6798.0 270.0 >5859 T successful-only 0 5.76e+44 4.9e+43 5.76e+44 4.9e+43 9.2e+38 8.8e+38 3.44e+39 9.2e+38 8.8e+38 3.44e+39 0.92 0.89 3.33 0.92 0.89 3.33 2e+38 1.8e+38 5.1e+38 2e+38 1.8e+38 5.1e+38 4.3e+38 3.7e+38 7.4e+38 4.3e+38 3.7e+38 7.4e+38 1.25e-16 1.25e-18 2.0833333333333335 0.020833333333333336 3.739047446448458e+29 nan 3.2216900321877534e-12 1.1689816420679433e-13 5.844908210339717e-14 2.429639488964425e+29 3.719238744574696e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 9.636841510480056e+33 3.496702258975415e+32 1.7483511294877074e+32 True True False 30.604480794360374
+"EXO 1846-031" 5.0 3.0 29.958 -0.919 282.321 -3.062 L "" 0.0 12.0 "" 0.0 0.0 "" 62.0 10.0 9.0 False 0.0 0.0 "Williams 2022, Draghis" "Williams 2022" https://ui.adsabs.harvard.edu/abs/2022MNRAS.517.2801W 99.0 3.0517e+37 0.0 1280000000.0 6.9 0.1 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.02e-08 0.0 0.0 0 "" "" "" 11.0 11.0 C BHC,T 1985 EX 1 "" "" "" "" 0.0 0.0 0 0 0 "XT, RP, US, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.4500000000000003e-16 5e-18 26.953125 0.390625 1.0319770952197745e+30 1.3853045315527977e-12 2.7554078373853743e-12 9.805691629621327e-14 4.9028458148106635e-14 6.724610111360826e+29 1.0047482974588413e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.1437754970047723e+33 8.242080510639881e+33 2.933115699871731e+32 1.4665578499358655e+32 True True True 29.97078442438792
+"MAXI J1848-015" 3.4 1.0 31.308 -0.091 282.1998466 -1.486740131 L "" 0.0 0.0 "" 0.0 0.0 "" 76.0 2.0 2.0 "" 0.0 0.0 "Bahramian 2023" "Bahramian 2023" https://ui.adsabs.harvard.edu/abs/2023ApJ...948L...7B 144.93830116312685 1.34e+36 0.0 1280000000.0 0.05 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 9.69e-10 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 BH 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.5e-18 2.5000000000000002e-20 0.1953125 0.001953125 3.457871078475534e+27 2.9638943895119455e-12 2.5408923761223854e-12 8.945826931544167e-14 4.472913465772083e-14 1.7061157244003615e+27 2.3515807757861036e+27 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.099505875659701e+33 3.5144313043650295e+33 1.237340648785364e+32 6.18670324392682e+31 False False True 31.308118818029453
+"XTE J1901+014" 5.0 3.0 35.381 -1.622 285.421 1.438 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" "" 0.0 0.0 "" "" "" "" 12.0 12.0 C BHC,T 2002 Rx 4 "" "" "" "" 0.0 0.0 "" "" "" 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 1.1372320583336108e-12 2.2231167684677382e-12 7.855536389501753e-14 3.9277681947508765e-14 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.401731698985289e+33 6.649871261036836e+33 2.3497778622119577e+32 1.1748889311059788e+32 True False False 35.41331387197037
+"MAXI J1820+070" 2.96 0.33 35.854 10.159 275.091 7.185 L 0.49 0.0 8.48 "" 0.79 0.72 "" 63.0 3.0 3.0 "" 16.45 0.0 "Bright 2025, Poutanen 2022, Torres 2020" "Bright 2025" https://ui.adsabs.harvard.edu/abs/2025MNRAS.541.1851B 25.1 2.3697e+38 0.0 1280000000.0 11.8 0.12 2.98e-13 0.0 0.0 4.03e-14 8.61e-15 1.16e-14 1.64e-14 5.2e-15 7.97e-15 27.136389360498 0 2.26e-07 0.0 0.0 0 "" "" "" "" "" A 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, BH, MQ?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.9e-16 6.0000000000000004e-18 46.09375 0.46875 6.18509519456437e+29 nan 1.7658705042688163e-12 6.561588930817006e-14 3.280794465408503e-14 1.293511869434523e+29 1.4675678396592556e+29 3.123997233864716e+32 0.0 0.0 4.22473451425329e+31 1.2511187415789874e+31 1.602953749212306e+31 1.7192467998450115e+31 6.450759567560601e+30 9.398027065698355e+30 nan nan nan nan False True True 37.078996374742005
+"XTE J1856+053" 5.0 3.0 38.258 1.249 284.179 5.31 L 1 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 2.23193e+36 1.31e+36 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.01 HCS,SDS,IMS 7.46e-10 8.8e+34 6.9e+34 no 2.31e-10 0.0 0.0 108.0 108.0 C BHC,T 1996 Rx 5 3 1 0 4 6714.0 354.0 1523 T successful-only 0 3.79e+44 3.6e+43 1.38e+44 1.08e+43 1.4e+38 1.4e+38 6.3e+38 6e+37 3.8e+37 1.61e+38 0.2 0.18 0.63 0.077075 0.04768385471 0.1610034938 9.4e+37 9.5e+37 4.36e+38 3.62e+37 2.48e+37 1.1e+38 1.4e+38 1.3e+38 4.3e+38 5.85e+37 3.57e+37 1.13e+38 nan nan nan nan nan 1.1623434298722673e-12 1.898801230095294e-12 6.904706678779386e-14 3.452353339389693e-14 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.476845786688034e+33 5.679766312560799e+33 2.0653620700612545e+32 1.0326810350306272e+32 True False False 38.27525980136826
+"SS 433" 5.5 0.2 39.694 -2.245 287.957 4.983 H 10.9 3.1 15.0 "" 2.0 2.0 "" 78.8 0.1 0.0 False 314.4 0.0 "Hillwig 2004, Blundell 2011, Middleton 2021" "Blundell 2011" https://ui.adsabs.harvard.edu/abs/2011MNRAS.417.2401B 80.0 2e+37 2.66e+37 2300000000.0 1500.0 0.0 2.5e-12 3.29e-13 4e-13 2.89e-13 2.39e-14 2.86e-14 1.33e-13 1.94e-14 2.62e-14 83.18 "" "" 2e+36 1.6e+36 no 4.7e-09 3.5e-10 2.9e-10 0.15 0.1 B BHC,P,R,J 1978 U 0 "" "" "" "" 1189.0 5879.0 "" P mainly-HCS BE,BH,EB,MQ,RS 1.45e+45 2e+43 3.62e+44 4.72e+42 8.1e+38 5.4e+38 8.8e+38 1.76e+38 7.22e+37 1.2e+38 0.86 0.65 0.95 0.1856545455 0.07865997333 0.1202005421 8.1e+38 5.4e+38 8.8e+38 1.76e+38 7.22e+37 1.2e+38 2.6e+37 2e+37 2.2e+37 2.36e+36 1.82e+36 2e+36 7.5e-14 7.5e-16 3260.869565217391 32.608695652173914 2.71454844612158e+32 6.020292804867615e-13 1.923861397271711e-12 6.968285235210952e-14 3.484142617605476e-14 2.016819892968431e+31 2.026687039500535e+31 9.048494820405267e+33 1.3307450358934993e+33 1.586828317004255e+33 1.0460060012388488e+33 1.133917973775008e+32 1.3091248197229187e+32 4.813799244455602e+32 7.758536573127999e+31 1.0060563702746353e+32 nan nan nan nan True False True 39.74695223455827
+"IGR J18539+0727" 5.0 3.0 39.847 2.846 283.475 7.45 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Pandey et al 2006, Lutovinov 2003" "Pandey 2006" https://ui.adsabs.harvard.edu/abs/2006A&A...446..471P nan 1.03e+37 0.0 1280000000.0 5.25 0.25 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" 3.45e-09 0.0 0.0 "" "" "" "" 180.0 180.0 C BHC,T 2003 I 1 "" "" "" "" 0.0 0.0 "" "" "" "XT, BH?, RP?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.6250000000000003e-16 1.25e-17 20.5078125 0.9765625 7.851999637541761e+29 5.777348817024736e-12 1.747943125604009e-12 6.514211445235711e-14 3.2571057226178557e-14 5.051192464521632e+29 7.64630049199814e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.7281425073230686e+34 5.228513824261445e+33 1.9485556535947124e+32 9.742778267973562e+31 True False True 39.93160320238432
+"XTE J1908+094" 6.5 3.5 43.263 0.434 287.221 9.385 L 1 0.0 0.0 "" 0.0 0.0 > 79.0 0.0 0.0 "" 0.0 0.0 "Rushton 2017, Chaty 2007" "Rushton 2017" https://ui.adsabs.harvard.edu/abs/2017MNRAS.468.2788R -11.0 1.90621e+37 7.09e+36 4900000000.0 1.29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 8.83 HCS,SDS,IMS 3.77e-09 1.01e+36 9.6e+35 no 1.25e-09 1.8e-10 1.7e-10 0.1 0.1 B BHC,T,R,J 2002 Rx 2 1 1 0 2 6444.0 624.0 2415 T successful-only "RP, XT, BH?, MQ?" 8.2e+44 1e+44 6.68e+44 5.27e+43 1e+39 1.1e+39 5e+39 5.65e+38 5.53e+38 2.51e+39 1.1 1.2 5.1 0.62 0.6035105633 2.559472602 7.3e+38 7.4e+38 3.85e+39 4.3e+38 3.75e+38 1.94e+39 4.9e+37 4.2e+37 9.8e+37 2.45e+37 2.1e+37 4.9e+37 6.45e-17 6.45e-19 1.316326530612245 0.013163265306122449 3.260598935200913e+29 6.82138612001921e-13 1.6547506527918943e-12 6.245337558948105e-14 3.1226687794740525e-14 2.5198050014879228e+29 4.4423360129357836e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.4483417549657246e+33 8.365082506226769e+33 3.157138138709529e+32 1.5785690693547645e+32 True True True 43.26474649092928
+"GRS 1915+105" 9.4 0.8 45.366 -0.219 288.798 10.946 L 0.5 0.0 12.4 "" 1.8 2.0 False 70.0 2.0 2.0 False 739.0 0.0 "Motta et al 21, 25" "Motta 2021" https://ui.adsabs.harvard.edu/abs/2021MNRAS.503..152M 149.7 9.82366e+38 1.0745249810708493e+39 1280000000.0 1360.0 3.0 1.21e-12 2.02e-13 2.45e-13 2.41e-13 2.96e-14 7.26e-14 1.48e-13 2.55e-14 8.33e-14 100.0 HCS,SDS,IMS 9.29e-08 5.615089237425637e+35 6.570849107625745e+35 yes 1.58767e-07 0.0 0.0 0.001 0.001 A BH,P,R,J,W 1992 G 1 1 0 0 1 0.0 7068.0 >7068 P turtlehead/anomalous-high-luminosity "MQ, DS, RP, BH, XT, PSH" 4.5637533802055175e+47 2.5088696592752843e+45 4.5637533802055175e+47 2.5088696592752843e+45 4.6593293672255285e+39 1.6725797728501896e+39 2.2699296917252572e+39 4.6593293672255285e+39 1.6725797728501896e+39 2.2699296917252572e+39 2.9150676041103303 0.7646078961600867 0.8004488912925908 2.9150676041103303 0.7646078961600867 0.8004488912925908 4.6593293672255285e+39 1.6725797728501896e+39 2.2699296917252572e+39 4.6593293672255285e+39 1.6725797728501896e+39 2.2699296917252572e+39 4.300919415900487e+39 1.553109789075176e+39 2.2699296917252572e+39 4.300919415900487e+39 1.553109789075176e+39 2.2699296917252572e+39 6.8e-14 1.5e-16 5312.5 11.71875 7.189117376331723e+32 1.7655753474719044e-12 1.5897771330772174e-12 6.043789119321791e-14 3.0218945596608955e-14 1.1635721844039412e+32 1.2602620155103998e+32 1.2792400037296153e+34 2.961548853018931e+33 3.5124929334051884e+33 2.547907776023449e+33 5.1782369312752e+32 9.132969722339945e+32 1.564690252495728e+33 3.6148539284297574e+32 9.037072690444452e+32 nan nan nan nan True True True 45.36641322340487
+"4U 1957+115" 7.8 3.0 51.308 -9.33 299.851 11.709 L 1 0.0 3.0 "" 0.0 0.0 > 50.0 0.0 0.0 False 9.33 0.0 "" "" "" nan 0.0 3.9083616e+37 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 99.32 0 "" 4.867199999999999e+35 3.40704e+35 no 2.835e-09 0.0 0.0 1.0 1.0 C BHC,P,W 1973 U 0 "" "" "" "" 48.0 7020.0 0 P mainly-SDS "BH?, US" 2.3167872e+46 3.89376e+44 2.3167872e+46 3.89376e+44 2.3119199999999995e+38 2.0198879999999997e+38 4.404816e+38 2.3119199999999995e+38 2.0198879999999997e+38 4.404816e+38 0.24336 0.21659039999999996 0.46481759999999994 0.24336 0.21659039999999996 0.46481759999999994 1.3628159999999997e+38 1.1681279999999998e+38 2.9446559999999995e+38 1.3628159999999997e+38 1.1681279999999998e+38 2.9446559999999995e+38 2.3119199999999995e+38 2.0198879999999997e+38 4.404816e+38 2.3119199999999995e+38 2.0198879999999997e+38 4.404816e+38 nan nan nan nan nan nan 1.5587858907317526e-12 5.957652139152088e-14 2.978826069576044e-14 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 1.1347145560244449e+34 4.336858988922807e+32 2.1684294944614034e+32 True False True 51.91252993856929
+"XTE J1859+226" 12.5 1.5 54.046 8.608 284.673 22.658 L 0.5 0.0 10.83 "" 4.67 4.67 False 60.0 3.0 3.0 False 6.6 0.05 "Brocksopp 2002" "Brocksopp 2002" https://ui.adsabs.harvard.edu/abs/2002MNRAS.331..765B nan 6.26421e+38 1.0400390625e+37 1660000000.0 110.0 0.0 0.0 0.0 0.0 6.1e-14 0.0 0.0 4.34e-14 0.0 0.0 3.18 HCS,SDS,IMS 3.35e-08 3.662109375e+35 3.41796875e+35 yes 7.52e-10 0.0 0.0 0.5 0.5 A BH,T,R,J 1999 Rx 1 1 0 0 1 6843.0 225.0 >5719 T successful-only "SH, RP, XT, BH, MQ?" 1.77490234375e+45 1.6601562500000001e+44 1.77490234375e+45 1.6601562500000001e+44 2.2216796875e+39 1.4404296875e+39 1.9042968750000002e+39 2.2216796875e+39 1.4404296875e+39 1.9042968750000002e+39 1.611328125 0.634765625 0.439453125 1.611328125 0.634765625 0.439453125 8.30078125e+38 5.37109375e+38 7.8125e+38 8.30078125e+38 5.37109375e+38 7.8125e+38 2.2216796875e+39 1.4404296875e+39 1.9042968750000002e+39 2.2216796875e+39 1.4404296875e+39 1.9042968750000002e+39 5.5e-15 5.5000000000000006e-17 331.32530120481925 3.3132530120481927 1.028238047773326e+32 nan 1.2406217273897454e-12 5.230649567226502e-14 2.615324783613251e-14 2.3251287796833085e+31 2.553845992683193e+31 0.0 0.0 0.0 1.1404094711667796e+33 0.0 0.0 8.113732958793155e+32 0.0 0.0 nan 2.3193717509025514e+34 nan nan True True True 54.51275189944484
+"GS 2000+25" 2.7 0.7 63.366 -2.999 300.706 25.236 L 0.3 0.0 8.37 "" 1.3 1.3 False 60.0 5.0 5.0 False 8.3 5e-07 Hjellming1988 "Hjellming 1988" https://ui.adsabs.harvard.edu/abs/1988ApJ...335L..75H nan 3.0186e+38 0.0 4900000000.0 4.9 1.5 0.0 0.0 0.0 3.65e-14 0.0 0.0 1.73e-14 0.0 0.0 "" 0 3.46e-07 0.0 0.0 0 "" "" "" 0.6 0.7 A BH,T,R,J? 1988 GS 1 "" "" "" "" 0.0 0.0 0 0 0 "RP, BH, XT, PSH, US" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.4500000000000004e-16 7.500000000000001e-17 5.000000000000001 1.5306122448979593 2.1370002213533662e+29 0.0 1.2056358774401997e-12 5.132584068642978e-14 2.566292034321489e-14 1.1383278962230279e+29 1.4058288822608407e+29 0.0 0.0 0.0 3.1836942073223616e+31 0.0 0.0 1.5089838297719685e+31 0.0 0.0 0.0 1.051609851820925e+33 nan nan True True True 63.40534610883833
+"Cyg X-1" 1.86 0.12 71.335 3.067 299.59 35.202 H 29 6.0 14.81 False 0.98 0.98 False 27.06 0.76 0.76 False 134.4 0.0 "Hjellming 1975" "Hjellming 1975" https://ui.adsabs.harvard.edu/abs/1975Natur.256..111H nan 0.0 2.1965e+37 8600000000.0 45.0 10.0 2.98e-13 0.0 0.0 1.59e-14 4.14e-15 5.25e-15 3.77e-15 1.47e-15 2.47e-15 100.0 "" "" 1.4e+34 1.8e+34 no 3.8774e-09 0.0 0.0 0.003 0.003 A BH,P,R,J 1971 U 0 "" "" "" "" 0.0 7068.0 "" P mainly-HCS BH,MQ,RS,SG,US 1.14e+46 2.3e+43 1.14e+46 2.3e+43 1.37e+38 2e+37 2.2e+37 1.37e+38 2e+37 2.2e+37 0.071 0.0062 0.0067 0.071 0.0062 0.0067 7.14e+37 9e+36 1.05e+37 7.14e+37 9e+36 1.05e+37 5.4e+37 7.2e+36 7.3e+36 5.4e+37 7.2e+36 7.3e+36 2.2500000000000003e-15 5.000000000000001e-16 26.16279069767442 5.813953488372094 9.313638152927823e+29 6.860136035302669e-12 1.163712745706752e-12 5.034880904512469e-14 2.5174404522562344e-14 2.3692057625003305e+29 2.4363775068607717e+29 1.2335396309211071e+32 0.0 0.0 6.581637628068994e+30 1.8913328879190873e+30 2.3974131759019125e+30 1.5605518149572395e+30 6.356856553932069e+29 1.0112376209819812e+30 nan nan nan nan True False True 71.36272018887502
+"V404 Cyg" 2.39 0.14 73.119 -2.091 306.016 33.867 L 0.65 0.0 7.15 False 0.35 0.35 False 80.1 5.1 5.1 False 155.3 5e-05 "Fender22, Miler-Jones29, Han 92" "Han 1992" https://ui.adsabs.harvard.edu/abs/1992ApJ...400..304H nan 1.77051e+38 0.0 4000000000.0 1640.0 80.0 0.0 0.0 0.0 2.07e-14 0.0 0.0 8.41e-15 0.0 0.0 "" "" 2.59e-07 0.0 0.0 "" "" "" "" 8.33e-09 5e-05 A BH,T,R,J?,W 1989 GS 4 "" "" "" "" 0.0 0.0 "" "" "" "XT, RP, BH, US" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 8.2e-14 4e-15 2050.0 100.0 5.604290109908401e+31 0.0 1.1638807016414394e-12 5.033158199591625e-14 2.5165790997958124e-14 6.916395021601273e+30 7.144455020609956e+30 0.0 0.0 0.0 1.4147415277451696e+31 0.0 0.0 5.747814612723129e+30 0.0 0.0 0.0 7.954542811368743e+32 nan nan True True True 73.13057702230101
+"XTE J2012+381" 5.0 3.0 75.388 2.247 303.157 38.184 L 1 0.0 0.0 "" 0.0 0.0 "" 68.0 11.0 6.0 False 0.0 0.0 "Hynes 1998, Draghis" "Hynes 1998" https://ui.adsabs.harvard.edu/abs/1998IAUC.6932....2H nan 2.32468e+37 5.06e+35 4900000000.0 3.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.86 HCS,SDS,IMS 7.77e-09 1.4e+34 1.4e+34 yes 0.0 0.0 0.0 0.4 0.4 C BHC,T,R 1998 Rx 1 1 0 0 1 6866.0 202.0 >6216 T successful-only "XT, US, RP, BH?" 2.48e+44 2.8e+43 2.48e+44 2.8e+43 8.8e+37 8.1e+37 2.17e+38 8.8e+37 8.1e+37 2.17e+38 0.083 0.084 0.206 0.083 0.084 0.206 3.2e+37 2.8e+37 4.9e+37 3.2e+37 2.8e+37 4.9e+37 8.8e+37 8.1e+37 2.17e+38 8.8e+37 8.1e+37 2.17e+38 1.5000000000000002e-16 1.5000000000000003e-18 3.0612244897959187 0.030612244897959186 4.48685693573815e+29 nan 1.1660852653416179e-12 5.0642689759706374e-14 2.5321344879853187e-14 2.9149692946955475e+29 4.3991952376308736e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 3.488038506973399e+33 1.5148433586184926e+32 7.574216793092463e+31 True True True 75.39948509139752
+"Cyg X-3" 8.3 1.6 79.845 0.7 308.107 40.958 H 10 0.0 2.4 False 1.1 2.1 False 43.0 9.0 11.0 False 4.8 0.0 "Fender and Kuulkers 01" "Fender 2001" https://ui.adsabs.harvard.edu/abs/2001MNRAS.324..923F nan 0.0 2.0605e+38 5000000000.0 200000.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.35e-12 1e-13 1e-13 100.0 "" "" 1e+36 7.4e+35 no 3.637e-08 1.8e-10 1.3e-10 0.03 0.03 B BHC,P,R,J 1966 Ae 0 "" "" "" "" 0.0 7068.0 "" P turtlehead/anomalous-high-luminosity BH,MQ,RS 9e+46 5.1e+44 9e+46 5.1e+44 1.6e+39 1.2e+39 2.2e+39 1.6e+39 1.2e+39 2.2e+39 6.1 1.1 2.5 6.1 1.1 2.5 1.11e+39 8.6e+38 1.73e+39 1.11e+39 8.6e+38 1.73e+39 1.6e+39 1.2e+39 2.2e+39 1.6e+39 1.2e+39 2.2e+39 1.0000000000000001e-11 1.0000000000000002e-13 200000.0 2000.0 8.2426553147467e+34 nan 1.1941313894670002e-12 5.1435949311801416e-14 2.5717974655900708e-14 2.7909294966010503e+34 3.5138720722146944e+34 0.0 0.0 0.0 0.0 0.0 0.0 1.9370239989654739e+34 6.664542211305119e+33 0.0 nan 9.842813443896028e+33 4.239688009639617e+32 nan True False True 79.84576590694391
+"MWC 656" 2.6 0.6 100.175 -12.398 340.739 44.722 H 7.8 2.0 5.35 False 1.55 1.55 > 66.0 0.0 0.0 False 1448.9 0.0 "Dzib et al 2015, Ribo 2017" "Dzib 2015" https://ui.adsabs.harvard.edu/abs/2015A&A...580L...6D nan 1.88e+30 0.0 10000000000.0 0.0142 0.0029 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" 2.32e-15 0.0 0.0 "" "" "" "" 0.003 0.003 B BHC,T,R,J? 2010 AG 0 "" "" "" "" 0.0 0.0 "" "" "" BE,BH 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 7.100000000000001e-19 1.45e-19 0.0071 0.00145 5.742698279671687e+26 nan 1.249969373576695e-12 5.378077273005013e-14 2.6890386365025065e-14 2.6069801605252338e+26 3.1383735091416e+26 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 1.011013657926927e+33 4.349954239947504e+31 2.174977119973752e+31 True False True 99.93527970704996
+"Cl Cam" 5.0 3.0 149.177 4.133 64.926 55.999 H "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 465.84 0.0 "Clark 2000" "Clark 2000" https://ui.adsabs.harvard.edu/abs/2000A&A...356...50C nan 0.0 2.578e+35 8300000000.0 1000.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.71 HCS "" 3.5e+33 3.3e+33 yes 0.0 0.0 0.0 0.0566 0.0678 C BHC,T,R 1998 Rx 1 0 0 1 1 7018.0 50.0 >6271 T hard-only 0 5.2e+43 1.2e+43 5.2e+43 1.2e+43 3.2e+38 2.6e+38 5.2e+38 3.2e+38 2.6e+38 5.2e+38 0.32 0.29 0.53 0.32 0.29 0.53 3.2e+38 2.6e+38 5.2e+38 3.2e+38 2.6e+38 5.2e+38 0.0 0.0 0.0 0.0 0.0 0.0 5e-14 5e-16 602.4096385542168 6.024096385542168 1.495618978579383e+32 nan 1.6351116288274053e-12 6.570299088347422e-14 3.285149544173711e-14 9.863356997725079e+31 1.4574764764870782e+32 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 4.8910079683402317e+33 1.965332802295045e+32 9.826664011475225e+31 True False False 148.92818079560652
+"AT 2019wey" 5.0 3.0 151.161 5.3 68.847 55.376 L 0.8 0.0 0.0 "" 0.0 0.0 < 30.0 0.0 0.0 < 8.2 0.0 "Yadlapalli 2021" "Yadlapalli 2021" https://ui.adsabs.harvard.edu/abs/2021ApJ...909L..27Y 122.0 7.18047e+37 0.0 4800000000.0 1.32 0.02 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 2.4e-08 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, RP, MQ?, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.600000000000001e-17 1.0000000000000003e-18 1.3750000000000002 0.020833333333333336 1.974217051724786e+29 nan 1.6022176936054854e-12 6.452800658540147e-14 3.2264003292700735e-14 1.2926805670967581e+29 1.9253754850536597e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 4.7926143807441023e+33 1.930186225980437e+32 9.650931129902186e+31 False True True 150.71923138643953
+"XTE J1118+480" 1.72 0.1 157.661 62.32 169.545 48.037 L 0.18 0.0 7.3 "" 0.73 0.73 False 75.0 7.0 7.0 False 4.1 5e-07 "Chatterjee 2020" "Chatterjee 2020" https://ui.adsabs.harvard.edu/abs/2001MNRAS.322L..23F nan 1.76669e+35 4.47e+34 4990000000.0 5.16 0.25 0.0 0.0 0.0 2.11e-14 0.0 0.0 1.06e-14 0.0 0.0 2.87 HCS 4.99e-10 1.3e+33 1.3e+33 no 0.0 0.0 0.0 0.11 0.04 A BH,T,R,J 2000 Rx 2 0 1 1 2 6865.0 203.0 2809 T hard-only "MQ, RP, BH, XT, PSH" 3.04e+43 6.2e+41 3.04e+43 6.2e+41 3.6e+36 1.9e+36 2.2e+36 3.6e+36 1.9e+36 2.2e+36 0.0038 0.0018 0.0017 0.0038 0.0018 0.0017 3.6e+36 1.9e+36 2.2e+36 3.6e+36 1.9e+36 2.2e+36 0.0 0.0 0.0 0.0 0.0 0.0 2.5799999999999995e-16 1.2499999999999998e-17 5.170340681362725 0.250501002004008 9.132455280377163e+28 nan 1.3204129761487062e-12 5.578938581557918e-14 2.789469290778959e-14 1.0917802421218164e+28 1.2097716872957857e+28 0.0 0.0 0.0 7.468790946354969e+30 0.0 0.0 3.752094029922401e+30 0.0 0.0 nan 4.673880797018519e+32 nan nan True True True 115.4466398602123
+"GRO J0422+32" 2.49 0.3 165.881 -11.913 65.428 32.907 L 0.46 0.0 3.69 "" 0.41 0.41 False 63.7 5.2 5.2 False 5.1 5e-06 "Fender01, Shrader 94" "Fender 2001a" https://ui.adsabs.harvard.edu/abs/2001MNRAS.322...31F nan 4.28131e+37 0.0 5000000000.0 1.0 0.0 0.0 0.0 0.0 3.13e-14 0.0 0.0 1.58e-14 0.0 0.0 "" 0 5.77e-08 0.0 0.0 0 "" "" "" 0.2 0.2 A BH,T,R 1992 CG 3 "" "" "" "" 0.0 0.0 0 0 0 "XT, RP, BH, PSH" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5e-17 5e-19 1.0 0.01 3.7091948916360138e+28 nan 1.164001491652465e-12 5.034452893943226e-14 2.517226446971613e-14 8.18318930879497e+27 9.524132402007428e+27 0.0 0.0 0.0 2.321956002164145e+31 0.0 0.0 1.1721055857569803e+31 0.0 0.0 nan 8.635016773388046e+32 nan nan True True True 161.60507782380336
+"1A 0620-00" 1.06 0.1 209.338 -6.223 95.685 0.346 L 0.34 0.03 5.86 False 0.25 0.25 False 51.0 0.9 0.9 False 7.8 0.0 "Kuulkers 1999" "Kuulkers 1999" https://ui.adsabs.harvard.edu/abs/1999MNRAS.306..919K nan 3.56336e+38 0.0 1400000000.0 300.0 80.0 0.0 0.0 0.0 2.73e-14 0.0 0.0 8.23e-15 0.0 0.0 "" "" 2.65e-06 0.0 0.0 "" "" "" "" 0.18 0.1 A BH,T,R,J 1975 Ar 2 "" "" "" "" 0.0 0.0 "" "" "" "RP, BH, XT, MQ?, US" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.5000000000000002e-14 4e-15 1071.4285714285716 285.7142857142857 2.0165729811981543e+30 nan 2.3175270145949638e-12 8.233428852511488e-14 4.116714426255744e-14 6.40635497558457e+29 6.788440428385489e+29 0.0 0.0 0.0 3.6701628257806407e+30 0.0 0.0 1.106426375684054e+30 0.0 0.0 nan 3.1156415738860154e+32 nan nan True True True 150.0668030597913
+"MAXI J0637-430" 8.0 1.0 251.518 -20.671 99.098 -42.868 L 0.25 0.07 5.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 2.2 0.0 "Russel 2019 (Atel), Tetarenko 2019" "Russel 2019" https://ui.adsabs.harvard.edu/abs/2019ATel13275....1R nan 4.81762e+37 0.0 5500000000.0 0.066 0.015 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 6.29e-09 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, BH?, RP?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.3e-18 7.500000000000001e-19 0.06 0.013636363636363636 2.526997826207726e+28 nan nan nan nan 6.589498889890126e+27 6.98318104547702e+27 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan False True True 107.2534282823638
+"LMC X-3" 48.1 2.2 273.576 -32.082 84.735 -64.084 H 3.63 0.57 6.95 "" 0.33 0.33 False 69.65 0.56 0.56 False 40.9 0.0 "Orosz 2014" "" "" nan 0.0 1.134e+39 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 94.5 "" "" 1.397e+37 1e+37 no 2.002e-07 2.5e-09 1.8e-09 0.15 0.15 A BH,P 1971 U 0 "" "" "" "" 389.0 6679.0 "" P turtlehead/anomalous-high-luminosity 0 2.51e+47 2.4e+45 8.54e+46 5.6e+44 7.3e+39 4.4e+39 4.3e+39 3.72e+39 7.95e+38 8.08e+38 7.8 4.2 4.4 4.1 0.7791387186 0.8013381665 7.3e+39 4.4e+39 4.3e+39 3e+39 7.84e+38 8.11e+38 4.1e+39 1.8e+39 2e+39 2.55e+39 5.11e+38 6.19e+38 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True False False 86.97065068192612
+"GRS 1009-45" 3.8 0.3 275.879 9.346 153.402 -45.076 L 0.6 0.0 5.95 "" 0.89 0.89 False 62.0 5.1 5.1 False 6.8 0.0003 "" "" "" nan 8.81331e+37 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" 5.1e-08 0.0 0.0 "" "" "" "" 0.16 0.15 A BH,T 1993 G,CG 1 "" "" "" "" 0.0 0.0 "" "" "" "XT, BH, US" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 84.19930942733704
+"LMC X-1" 50.0 2.3 280.203 -31.516 84.912 -69.743 H 32 0.0 10.91 "" 1.41 1.41 False 36.38 1.92 1.92 False 93.8 0.0 "" "" "" nan 0.0 1.29e+39 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 99.94 "" "" 1.72e+38 1.4e+38 no 2.29e-07 3.04e-08 2.5e-08 0.0015 0.0015 A BH,P 1971 U 0 "" "" "" "" 4.0 7064.0 "" P turtlehead/anomalous-high-luminosity 0 5.35e+47 3.8e+45 5.35e+47 3.8e+45 4.3e+41 3.3e+41 4.9e+41 4.3e+41 3.3e+41 4.9e+41 290.0 190.0 260.0 290.0 190.0 260.0 3.2e+39 1.2e+39 1.2e+39 3.2e+39 1.2e+39 1.2e+39 4.3e+41 3.3e+41 4.9e+41 4.3e+41 3.3e+41 4.9e+41 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True False False 81.31467421695604
+"IGR J11321-5311" 5.0 3.0 291.087 7.854 173.025 -53.183 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 0.0 0.0 "" "" "" nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" "" 0.0 0.0 "" "" "" "" 120.0 120.0 C BHC,T 2005 I 1 "" "" "" "" 0.0 0.0 "" "" "" "XT, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True False True 69.12010594402906
+"GRS 1124-68" 4.95 0.65 295.3 -7.073 171.61 -68.676 L 0.85 0.0 11.0 "" 1.4 2.1 "" 42.2 2.7 2.1 "" 10.4 2e-05 "Ball 1995" "Ball 1995" https://ui.adsabs.harvard.edu/abs/1995MNRAS.273..722B/abstract nan 3.98796e+38 0.0 4700000000.0 171.0 2.5 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.36e-07 0.0 0.0 0 "" "" "" 0.6 0.17 A BH,T,R 1991 G,GS 1 "" "" "" "" 0.0 0.0 0 0 0 "RP, BH, XT, PSH, US" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 8.55e-15 1.25e-16 181.91489361702128 2.6595744680851063 2.5066140351486674e+31 nan nan nan nan 6.244098584056372e+30 6.93779176132175e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 64.9059296471724
+"MAXI J1305-704" 7.5 1.5 304.238 -7.619 196.73 -70.451 L 0.43 0.0 8.9 "" 0.0 0.0 False 67.5 7.5 7.5 False 9.74 0.1 "" "" "" nan 6.93364e+36 8.347500000000001e+36 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.57 IMS 1.03e-09 1.0349999999999999e+36 7.2e+35 yes 6.54e-10 0.0 0.0 5.0 5.0 B BHC,T 2012 Mx 1 0 1 0 1 6886.0 182.0 >5922 T undefined "BH, XT" 8.032499999999999e+44 9.45e+43 8.032499999999999e+44 9.45e+43 1.8224999999999998e+39 1.7324999999999998e+39 9.6075e+39 1.8224999999999998e+39 1.7324999999999998e+39 9.6075e+39 2.475 2.25 9.450000000000001 2.475 2.25 9.450000000000001 1.2375e+39 1.17e+39 5.1750000000000003e+39 1.2375e+39 1.17e+39 5.1750000000000003e+39 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 56.10555239078754
+"47 Tuc-X9" 4.53 0.01 305.897 -44.888 6.017991506 -72.08236874 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.45 0.0 "Miller-Jones 2015, Heinke 2005" "Miller-Jones 2015" https://ui.adsabs.harvard.edu/abs/2015MNRAS.453.3918M nan 6e+32 0.0 5500000000.0 0.042 0.004 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 "" 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, BH?, RP, GC" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.1000000000000004e-18 2.0000000000000002e-19 0.038181818181818185 0.0036363636363636364 5.156163179584985e+27 nan nan nan nan 5.015148780591543e+26 4.8553198132847464e+26 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan False False True 65.45501688462701
+"MAXI J1348-630" 2.2 0.6 309.264 -1.103 207.053 -63.275 L 1 0.0 8.7 "" 0.0 0.0 < 46.0 0.0 0.0 "" 0.0 0.0 "Carotenuto  21" "Carotenuto 2021" https://ui.adsabs.harvard.edu/abs/2021MNRAS.504..444C 33.2 1.14107e+37 0.0 1280000000.0 486.0 1.6 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.97e-08 0.0 0.0 0 "" "" "" "" "" A 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.43e-14 8e-17 1898.4375 6.25 1.4072219144694274e+31 1.017700194752815e-12 nan nan nan 6.503821724147469e+30 8.635182083773156e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.89353916220562e+32 nan nan nan False True True 50.744677906146336
+"BW Cir" 43.0 18.0 309.977 -2.78 209.541 -64.735 L 0.9 0.0 7.47 "" 0.0 0.0 False 54.0 26.8 26.8 False 61.1 0.002 "Brocksopp 2001" "Brocksopp 2001" https://ui.adsabs.harvard.edu/abs/2001MNRAS.323..517B nan 5.26642e+38 3.76e+37 4800000000.0 2.8 0.1 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.22 HCS 2.38e-09 1.8e+36 2e+36 yes 6.64e-09 3.3e-10 3.5e-10 0.5 0.5 A BH,T,R,J? 1987 GS 5 0 0 1 1 6911.0 157.0 >6442 T hard-only "XT, RP, BH, US" 1.6e+46 2e+45 1.6e+46 2e+45 1.01e+40 7e+39 1.15e+40 1.01e+40 7e+39 1.15e+40 8.1 2.8 3.2 8.1 2.8 3.2 1.01e+40 7e+39 1.15e+40 1.01e+40 7e+39 1.15e+40 0.0 0.0 0.0 0.0 0.0 0.0 1.4e-16 5.000000000000001e-18 2.9166666666666665 0.10416666666666669 3.097247430360473e+31 7.713640956118663e-12 nan nan nan 2.0307252183798346e+31 3.1738172988255893e+31 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.7065039021472735e+36 nan nan nan True True True 50.07951083895689
+"1A 1524-62" 8.0 0.9 320.319 -4.427 232.071 -61.883 L 0.5 0.3 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 6.2 0.2 "" "" "" nan 3.56917e+38 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 4.66e-08 0.0 0.0 0 "" "" "" 3.0 3.0 B BHC,T 1974 Ar 2 "" "" "" "" 0.0 0.0 0 0 0 "XT, US, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 5.5520827432083745e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.251545764549391e+34 nan nan nan True True True 39.886596191983145
+"Swift J1539.2-6227" 5.0 3.0 321.019 -5.643 234.8 -62.467 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 0.0 0.0 "" "" "" nan 1.93574e+37 9.47e+35 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.48 HCS,SDS,IMS 6.47e-09 8e+34 6.2e+34 yes 1.67e-10 0.0 0.0 0.5 0.5 B BHC,T 2008 Sw 1 1 0 0 1 6893.0 175.0 >4704 T successful-only "XT, BH?" 4.22e+44 4.7e+43 4.22e+44 4.7e+43 2.3e+38 2.1e+38 9.9e+38 2.3e+38 2.1e+38 9.9e+38 0.28 0.26 0.91 0.28 0.26 0.91 2.3e+38 2.1e+38 9.9e+38 2.3e+38 2.1e+38 9.9e+38 8.9e+37 7.4e+37 1.33e+38 8.9e+37 7.4e+37 1.33e+38 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 39.322858309536905
+"Swift J151857.0-572147" 5.8 2.5 321.816 -0.003 229.74 -57.364 L "" 0.0 9.5 "" 1.0 1.0 "" 40.5 5.5 5.5 "" 0.0 0.0 "Carotenuto 24, Mondal 24, Peng 25" "Carotenuto 2024" https://ui.adsabs.harvard.edu/abs/2024ATel16518....1C 135.0 5.64e+37 0.0 5500000000.0 1700.0 170.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.4e-08 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 8.5e-14 8.499999999999998e-15 1545.4545454545455 154.54545454545453 3.421258325879911e+32 1.1707370964159664e-12 nan nan nan 2.2963252190422184e+32 3.5971790612531494e+32 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.7122282806230543e+33 nan nan nan False True False 38.184000099863695
+"MAXI J1535-571" 4.1 0.2 323.724 -1.129 233.832 -57.23 L "" 0.0 8.9 "" 1.0 1.0 < 45.0 0.0 0.0 "" 0.0 0.0 "Russel 19, Shang 19" "Russel 2019" https://ui.adsabs.harvard.edu/abs/2019ApJ...883..198R 124.7 2.89689e+38 0.0 5500000000.0 180.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.44e-07 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, RP, MQ, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 9.000000000000001e-15 9.000000000000001e-17 163.63636363636363 1.6363636363636362 1.810177562154199e+31 2.220633321113256e-12 nan nan nan 1.686078095610495e+30 1.799935478952683e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.466378457390196e+33 nan nan nan False True True 36.29115267546395
+"MAXI J1543-564" 10.0 3.0 325.085 -1.121 235.822 -56.414 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 0.0 0.0 "Miller Jones 11" "Miller-Jones 2011" https://ui.adsabs.harvard.edu/abs/2011ATel.3364....1M nan 1.71135e+37 4.72e+36 5500000000.0 0.38 0.09 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.48 HCS,SDS,IMS 1.43e-09 6.4e+35 4.8e+35 yes 2.08e-10 0.0 0.0 0.6 0.6 B BHC,T,R,J? 2011 Mx 1 1 0 0 1 6893.0 175.0 >5082 T successful-only "XT, BH?" 1.212e+45 1.36e+44 1.212e+45 1.36e+44 1.52e+39 1.4e+39 6e+39 1.52e+39 1.4e+39 6e+39 1.44 1.44 5.88 1.44 1.44 5.88 1.52e+39 1.4e+39 6e+39 1.52e+39 1.4e+39 6e+39 8.4e+37 7.2e+37 1.56e+38 8.4e+37 7.2e+37 1.56e+38 1.9e-17 4.5e-18 0.34545454545454546 0.08181818181818182 2.2733408474406623e+29 1.5990857337971524e-12 nan nan nan 5.061985985408761e+28 1.3211640867680797e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.9132983774740486e+34 nan nan nan True True True 34.930707414596995
+"XTE J1550-564" 4.5 0.5 325.882 -1.827 237.744 -56.476 L 0.3000000119 0.0 10.39 "" 2.26 2.26 False 67.4 9.7 9.7 False 37.0 0.0001 "Migliori 17, Wu 2002" "Wu 2002" https://ui.adsabs.harvard.edu/abs/2002ApJ...565.1161W 6.5 3.90169e+38 1.2551652892561982e+37 843000000.0 375.0 12.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 7.56 HCS,SDS,IMS 1.61e-07 5.0206611570247926e+35 5.0206611570247926e+35 no 2.119e-09 0.0 0.0 2.0 2.0 A BH,T,R,J 1998 Rx,CG 5 2 0 3 5 6534.0 534.0 464 T combined "RP, XT, MQ, BH" 6.8720299586776846e+44 2.301136363636363e+43 2.34297520661157e+44 5.752840909090908e+42 2.1965392561983467e+39 1.5689566115702478e+39 2.614927685950413e+39 9.330061983471072e+38 3.2738894628099168e+38 5.344912190082643e+38 1.5689566115702478 1.0459710743801651 1.2551652892561982 0.6812618801652892 0.210087617576188 0.25232610507489667 2.1965392561983467e+39 1.5689566115702478e+39 2.614927685950413e+39 5.784220041322313e+38 3.1588326446280985e+38 5.261234504132231e+38 1.9036673553719003e+39 4.393078512396694e+38 4.706869834710743e+38 4.30940082644628e+38 8.859374999999998e+37 9.5078770661157e+37 1.8750000000000002e-14 6e-16 2224.199288256228 71.17437722419929 4.542942647434877e+31 6.326321914485932e-13 nan nan nan 9.556841401330057e+30 1.0832114413501393e+31 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.5328062734250662e+33 nan nan nan True True True 34.16096672444381
+"Swift J1357.2-0933" 3.9 2.4 328.702 50.004 209.32 -9.544 L 0.4 0.0 0.0 > 3.0 0.0 > 80.0 0.0 0.0 False 2.8 0.3 Mata-Sanchez "Plotkin 2016" https://ui.adsabs.harvard.edu/abs/2016MNRAS.456.2707P nan 4.05916e+35 2.02e+35 5500000000.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.1 HCS 2.23e-10 5.5e+34 4.2e+34 yes 0.0 0.0 0.0 0.255 0.164 A BH,T,R,J? 2011 Sw 1 0 0 1 1 6990.0 78.0 >5489 T hard-only "XT, BH" 3.85e+43 7.8e+42 3.85e+43 7.8e+42 1.8e+38 1.7e+38 1.02e+39 1.8e+38 1.7e+38 1.02e+39 0.2 0.19 0.96 0.2 0.19 0.96 1.8e+38 1.7e+38 1.02e+39 1.8e+38 1.7e+38 1.02e+39 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 4.28465193514041e-12 1.6153938961693284e-13 8.076969480846642e-14 nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan 7.797505974376941e+33 2.9398055541096375e+32 1.4699027770548187e+32 True True True 56.68774978105393
+"4U 1543-475" 7.5 0.5 330.918 5.426 236.784 -47.67 L 2.450000048 0.0 9.4 "" 2.0 2.0 False 30.0 6.0 6.0 False 26.8 7e-05 "Zhang 2021" "Zhang 2021" https://ui.adsabs.harvard.edu/abs/2025MNRAS.538L..43Z nan 6.34125e+38 4.345e+36 1280000000.0 29.9 0.02 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.91 HCS,SDS,IMS 9.42e-08 3e+34 3.4e+34 yes 7.669e-10 0.0 0.0 30.0 30.0 A BH,T,R 1971 U 4 1 0 0 1 6933.0 135.0 >5848 T successful-only "XT, RP, BH, US" 2.45e+43 1.1e+42 2.45e+43 1.1e+42 2.1e+39 2.8e+38 3e+38 2.1e+39 2.8e+38 3e+38 1.725 0.099 0.17 1.725 0.099 0.17 4.83e+37 9.8e+36 1.12e+37 4.83e+37 9.8e+36 1.12e+37 2.1e+39 2.8e+38 3e+38 2.1e+39 2.8e+38 3e+38 1.495e-15 1e-18 116.796875 0.078125 1.00617766783928e+31 nan nan nan nan 1.2779555710114828e+30 1.3916867287637654e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 29.540309256502557
+"XTE J1637-498" 5.0 3.0 335.426 -1.783 249.261 -49.861 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 0.0 0.0 "Curran et al 2011, Markwardt Atel" "" "" nan 2.80038e+38 8.5e+32 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" N/A 9.36e-08 3e+32 2.7e+32 yes 0.0 0.0 0.0 1.8 1.8 C BHC,T 2008 Rx 1 0 1 0 1 0.0 0.0 >4615 T undefined 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 1.1681849445519726e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.49431914712527e+33 nan nan nan True False False 24.634593268540584
+"MAXI J1631-479" 5.0 3.0 336.287 0.312 247.809 -47.807 L "" 0.0 9.2 "" 1.0 1.3 "" 22.0 12.0 10.0 "" 0.0 0.0 "Monageng 25, Draghis, Zdziarski25" "Monageng 2021" https://ui.adsabs.harvard.edu/abs/2021MNRAS.501.5776M nan 3.17137e+37 0.0 1280000000.0 37.36 0.62 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.06e-08 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, BH?, RP" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.868e-15 3.1e-17 145.9375 2.421875 5.587632503972575e+30 1.173928659989404e-11 nan nan nan 3.632257286681278e+30 5.466515992322846e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.5114999667568326e+34 nan nan nan False True True 23.714933913151015
+"XTE J1650-500" 2.6 0.7 336.718 -3.427 252.504 -49.962 L 4 0.0 4.72 "" 2.16 2.16 False 75.2 5.9 5.9 False 7.7 0.02 "Corbel 2004" "Corbel 2004" https://ui.adsabs.harvard.edu/abs/2004ApJ...617.1272C nan 1.22968e+37 3.147e+35 4800000000.0 5.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.08 HCS,SDS,IMS 1.52e-08 4.4e+33 5e+33 yes 0.0 0.0 0.0 0.6 0.6 A BH,T,R,J?,W 2001 Rx 1 1 0 0 1 6850.0 218.0 >5007 T successful-only "XT, RP, BH" 9.86e+42 7.6e+41 9.86e+42 7.6e+41 6.1e+37 2.7e+37 3.4e+37 6.1e+37 2.7e+37 3.4e+37 0.1009 0.0019 0.0048 0.1009 0.0019 0.0048 6.1e+37 2.7e+37 3.4e+37 6.1e+37 2.7e+37 3.4e+37 4.6e+37 2.9e+37 5.2e+37 4.6e+37 2.9e+37 5.2e+37 2.5000000000000007e-16 2.5000000000000006e-18 5.208333333333334 0.05208333333333334 2.0220768590393268e+29 2.7961646430556188e-12 nan nan nan 9.342715299841575e+28 1.2230263632701954e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.2616239275146897e+33 nan nan nan True True True 23.518972622285492
+"4U 1630-472" 8.1 3.5 336.911 0.25 248.507 -47.393 L "" 0.0 0.0 "" 0.0 0.0 "" 46.4 3.0 0.2 "" 0.0 0.0 "Zhang et al 26, Kourmpetis 26" "Zhang 2026" https://ui.adsabs.harvard.edu/abs/2026NatAs.tmp....9Z nan 2.08074e+38 1.05868296e+38 1280000000.0 5.14 0.05 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 44.62 HCS,SDS,IMS 2.65e-08 1.994544e+36 1.732104e+36 no 7.12e-09 1.3e-10 1.2e-10 0.3 0.3 B BHC,T,R,J,W 1970 U,V 23 10 0 0 10 3914.0 3154.0 714 T successful-only "RP, US, DS, XT, BH" 1.3095756000000002e+46 6.03612e+44 3.8316240000000005e+45 9.657792000000001e+43 2.309472e+39 2.23074e+39 8.188128000000001e+39 9.159156000000002e+38 3.175524e+38 1.0576331999999999e+39 2.703132 2.545668 7.951931999999999 0.9893988 0.35065951804116 1.0467211390056 2.309472e+39 2.23074e+39 8.188128000000001e+39 6.009876e+38 2.6768880000000003e+38 1.0103939999999999e+39 1.653372e+39 1.390932e+39 2.5456680000000002e+39 6.272316000000001e+38 1.9446804e+38 3.6741600000000004e+38 2.57e-16 2.5e-18 20.078125 0.1953125 2.0175026579552388e+30 8.798480509467289e-12 nan nan nan 9.858621029520884e+29 1.3016036303692622e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.906987476193625e+34 nan nan nan True True True 23.09027935352766
+"GX 339-4" 10.0 2.0 338.939 -4.326 255.706 -48.79 L 0.4640000153 0.5 3.0 > 0.0 3.0 False 50.0 10.0 10.0 False 42.1 0.01 "Zdziarski 2019, Corbel 2000, Tremou et al (in prep)" "Tremou 2026" https://ui.adsabs.harvard.edu/abs/2026MNRAS.546ag139T -62.0 3.06367e+38 1.36875e+38 1280000000.0 88.8 0.13 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 49.17 HCS,SDS,IMS 2.56e-08 2.8125e+36 2.1875e+36 no 1.546e-08 3.1e-10 2.4e-10 0.05 0.05 A BH,T,R,J,W 1972 O7 20 6 0 4 10 3593.0 3475.0 501 T combined "MQ, RP, BH, XT, US" 1.3953125e+46 3.906249999999999e+44 4.15625e+45 6.578125000000001e+43 2.65625e+39 1.5625e+39 2.8124999999999996e+39 1.3921875e+39 3.6875e+38 8.484375e+38 2.8125 1.7187500000000002 2.65625 1.45625 0.39192595859375 0.81338293375 2.34375e+39 1.875e+39 5e+39 1.24375e+39 3.5781250000000004e+38 8.890625e+38 2.65625e+39 1.5625e+39 2.8124999999999996e+39 7.21875e+38 2.09375e+38 3.828125e+38 4.44e-15 6.5e-18 346.875 0.5078125 5.312438611913969e+31 1.7896386280352983e-12 nan nan nan 1.8963235543614937e+31 2.316167721799347e+31 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.141293997510689e+34 nan nan nan True True True 21.480901190188817
+"XTE J1652-453" 5.0 3.0 340.53 -0.787 253.085 -45.344 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 0.0 0.0 "Calvelo 09 (Atel)" "Calvelo 2009" https://ui.adsabs.harvard.edu/abs/2009ATel.2135....1C nan 4.15869e+37 1.16e+36 5500000000.0 0.95 0.06 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.25 HCS,SDS,IMS 1.39e-08 1.8e+35 1.2e+35 yes 2.05e-10 0.0 0.0 2.5 2.5 B BHC,T,R 2009 Rx 1 1 0 0 1 6909.0 159.0 >4912 T successful-only "XT, BH?" 1.55e+44 2.2e+43 1.55e+44 2.2e+43 6e+38 5.5e+38 2.72e+39 6e+38 5.5e+38 2.72e+39 0.54 0.54 2.51 0.54 0.54 2.51 6e+38 5.5e+38 2.72e+39 6e+38 5.5e+38 2.72e+39 8.8e+37 8.3e+37 2.94e+38 8.8e+37 8.3e+37 2.94e+38 4.7499999999999995e-17 3.0000000000000002e-18 0.8636363636363635 0.05454545454545454 1.4208380296504138e+29 6.801045307824911e-13 nan nan nan 9.210609788766534e+28 1.3822637144217325e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.0343544873122398e+33 nan nan nan True True True 19.4852827195727
+"XTE J1727-476" 5.0 3.0 342.203 -6.923 261.705 -47.64 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 1.05613e+37 1.17e+35 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.76 HCS,SDS,IMS 3.53e-09 6.9e+33 7.1e+33 yes 0.0 0.0 0.0 0.3 0.3 C BHC,T 2005 Rx,I 1 1 0 0 1 7014.0 54.0 >3551 T successful-only "BH?, XT" 7.5e+43 1.7e+43 7.5e+43 1.7e+43 3.2e+37 2.8e+37 7.2e+37 3.2e+37 2.8e+37 7.2e+37 0.034 0.031 0.072 0.034 0.031 0.072 2.7e+37 2.3e+37 5.6e+37 2.7e+37 2.3e+37 5.6e+37 2.8e+37 2.4e+37 5.9e+37 2.8e+37 2.4e+37 5.9e+37 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 19.055399658044315
+"Swift J1658.2-4242" 10.0 1.0 343.251 0.053 254.553 -42.698 L 1 0.0 14.0 "" 0.0 0.0 "" 64.0 3.0 2.0 "" 4.0 0.4 "Mondal 23, Xu 18" "Russel 2018b" https://ui.adsabs.harvard.edu/abs/2018ATel11322....1R nan 8.61657e+36 0.0 5500000000.0 2.35 0.17 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 7.2e-10 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "BH, XT" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.175e-16 8.500000000000001e-18 2.1363636363636362 0.15454545454545454 1.40588183986462e+30 2.272298871176356e-12 nan nan nan 2.8691815177960627e+29 3.120846033279364e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.7187946533886935e+34 nan nan nan False True True 16.74908145323124
+"GRO J1655-40" 3.2 0.5 344.982 2.456 253.501 -39.846 H 2.75999999 0.0 5.3 False 0.5 0.5 False 70.2 1.9 1.9 "" 62.9 9e-05 "Greene 2001, Motta 2013, Hjellming 95" "Hjellming 1995" https://ui.adsabs.harvard.edu/abs/1995Natur.375..464H 47.0 1.40929e+38 1.6185e+37 1490000000.0 5500.0 0.09 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 10.57 HCS,SDS,IMS 1.15e-07 7.2e+34 6.7e+34 no 2.857e-09 0.0 0.0 0.23 0.2 A BH,T,R,J,W 1994 CG 3 2 0 0 2 6321.0 747.0 3486 T successful-only "MQ, DS, RP, BH, XT" 1.91e+45 4.7e+43 9.63e+44 2.35e+43 6.2e+38 1.9e+38 2e+38 5.4e+38 1.15e+38 1.31e+38 0.89 0.21 0.22 0.77 0.129034879 0.1453444185 2.36e+38 7.5e+37 8.6e+37 2.05e+38 4.9e+37 6.19e+37 6.2e+38 1.9e+38 2e+38 5.4e+38 1.15e+38 1.31e+38 2.75e-13 4.5e-18 18456.375838926175 0.30201342281879195 3.369330434943635e+32 5.2283008223181576e-12 nan nan nan 9.617725748129619e+31 1.1461430345074303e+32 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.405772030428147e+33 nan nan nan True True True 15.21293752145594
+"Swift J1713.4-4219" 5.0 3.0 345.242 -1.96 258.361 -42.327 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Onori 2021 for x-ray" "" "" nan 1.5e+36 2.3e+33 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" N/A 5e-10 1.2e+32 1.4e+32 yes 0.0 0.0 0.0 180.0 180.0 C BHC,T 2009 Sw 1 0 1 0 1 0.0 0.0 >5054 T undefined 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 2.103446230591402e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.291908205787531e+33 nan nan nan True False False 14.884717733704823
+"SAX J1711.6-3808" 5.0 3.0 348.441 0.798 257.905 -38.118 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 3.79967e+36 4.44e+35 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.98 HCS 1.27e-09 3.1e+34 2.9e+34 yes 0.0 0.0 0.0 3.2 3.2 C BHC,T 2001 Be 1 0 0 1 1 6928.0 140.0 >5229 T hard-only "BH?, XT" 2.72e+44 3.8e+43 2.72e+44 3.8e+43 1.3e+38 1.1e+38 2.2e+38 1.3e+38 1.1e+38 2.2e+38 0.15 0.12 0.21 0.15 0.12 0.21 1.3e+38 1.1e+38 2.2e+38 1.3e+38 1.1e+38 2.2e+38 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 4.069913020832644e-13 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.21740783102493e+33 nan nan nan True True True 11.586139220289224
+"IGR J17091-3624" 14.0 3.0 349.525 2.213 257.282 -36.407 L "" 0.0 8.7 "" 0.0 0.0 "" 35.0 5.0 5.0 "" 0.0 0.0 "Rodriguez 11 (took A2 bc of flat spectrum), Russel et al in prep" "Rodriguez 2011" https://ui.adsabs.harvard.edu/abs/2011A&A...533L...4R nan 1.39799e+38 2.63424e+37 5500000000.0 1.53 0.1 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 11.64 HCS,SDS,IMS 5.96e-09 2.3519999999999998e+36 2.0384e+36 no 5.94e-10 0.0 0.0 24.0 24.0 B BHC,T,R,J,W 2003 I 6 1 1 0 2 6245.0 823.0 1445 T successful-only "XT, BH?, MQ" 6.7424e+45 7.84e+44 6.7424e+45 7.84e+44 2.3520000000000002e+39 2.1168e+39 6.664e+39 2.3520000000000002e+39 2.1168e+39 6.664e+39 2.4304 2.352 6.507199999999999 2.4304 2.352 6.507199999999999 1.4111999999999998e+39 1.4111999999999998e+39 5.644799999999999e+39 1.4111999999999998e+39 1.4111999999999998e+39 5.644799999999999e+39 1.4896e+39 1.4111999999999998e+39 5.5664e+39 1.4896e+39 1.4111999999999998e+39 5.5664e+39 7.65e-17 5e-18 1.3909090909090909 0.09090909090909091 1.7940248771855415e+30 1.6719965085201436e-12 nan nan nan 4.8904079249729125e+29 5.580164016003069e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.921050105689549e+34 nan nan nan True True True 10.70365838697349
+"IGR J17098-3628" 10.5 3.0 349.554 2.074 257.442 -36.466 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Rupen 05" "Rupen 2005" https://ui.adsabs.harvard.edu/abs/2005ATel..490....1R nan 1.42496e+37 0.0 4860000000.0 0.34 0.07 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" N/A 1.08e-09 0.0 0.0 "" "" "" "" 0.03 0.03 B BHC,T,R 2005 I 2 0 1 0 1 0.0 0.0 >3710 "" "" "BH?, RP?, XT" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.7000000000000002e-17 3.5000000000000014e-18 0.34979423868312765 0.07201646090534981 2.2425310964819272e+29 1.1521895839700765e-12 nan nan nan 1.1478764129578069e+29 1.5004743395237331e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.5198946888796888e+34 nan nan nan True True True 10.647658063886508
+"IGR J17177-3656" 23.0 3.0 350.107 0.509 259.4278336 -36.93467079 L "" 0.0 0.0 "" 0.0 0.0 "" 67.5 7.5 7.5 "" 0.0 0.0 "Ma 2012, Paizis 2011" "Paizis 2011" https://ui.adsabs.harvard.edu/abs/2011ApJ...738..183P nan 1.1e+38 0.0 5500000000.0 0.24 0.06 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.73e-09 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "XT, BH?, MQ?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.2000000000000001e-17 3.0000000000000002e-18 0.21818181818181817 0.05454545454545454 7.59535142081754e+29 6.274497443006438e-13 nan nan nan 2.5941077499720178e+29 2.9188623582534908e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.971417755721247e+34 nan nan nan False False True 9.905955287801348
+"XMM SL1J171900.4-35321" 5.0 3.0 351.399 1.098 259.752 -35.538 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 0.0 6.7e+34 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 10.98 HCS "" 1.8e+33 1.9e+33 no 0.0 0.0 0.0 8.0 8.0 C BHC,T 2010 X 16 0 13 3 16 6292.0 776.0 154 T hard-only "XT, BH?" 1.49e+43 1.2e+42 7.67e+42 4.95e+41 8.7e+35 7.4e+35 1.82e+36 5.2e+35 2.95e+35 8.25e+35 0.00093 0.00078 0.00175 0.0005666666667 0.000317297617 0.0008019074482 8.7e+35 7.4e+35 1.82e+36 5.2e+35 2.95e+35 8.25e+35 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 1.593789294170836e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.7674030324370833e+33 nan nan nan True False True 8.670278839372035
+"Swift J1728.9-3613" 8.4 0.8 351.955 -0.966 262.244 -36.244 L 2.6 0.0 4.6 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Balakrishnan et al 23," "Crook-Mansour (in prep)" https://thunderkat.physics.ox.ac.uk/source/Swift%20J1728.9-3613 nan 1.13997e+38 0.0 1280000000.0 10.9 0.7 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.35e-08 0.0 0.0 0 "" "" "" "" "" A 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "BH, XT" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.45e-16 3.5e-17 42.578125 2.734375 4.6011461556052714e+30 1.4157828176383626e-12 nan nan nan 8.765076716043197e+29 9.361753280723673e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.1952703978988535e+34 nan nan nan False True True 8.10240953522957
+"XTE J1720-318" 6.5 3.5 354.624 3.101 259.996 -31.75 L 3 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Brocksopp 2004" "Brocksopp 2004" https://ui.adsabs.harvard.edu/abs/2005MNRAS.356..125B nan 5.35962e+37 1.2675e+36 4900000000.0 4.9 0.06 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.67 HCS,SDS,IMS 1.06e-08 8.957e+34 8.788e+34 yes 1.324e-10 0.0 0.0 0.25 0.25 B BHC,T,R,J? 2003 Rx 1 1 0 0 1 6879.0 189.0 >4512 T successful-only "BH?, XT, RP" 1.0985e+44 1.5041e+43 1.0985e+44 1.5041e+43 1.69e+38 1.3181999999999998e+38 2.7884999999999998e+38 1.69e+38 1.3181999999999998e+38 2.7884999999999998e+38 0.18252 0.14872 0.26364 0.18252 0.14872 0.26364 1.6730999999999998e+38 1.4365e+38 3.0082e+38 1.6730999999999998e+38 1.4365e+38 3.0082e+38 1.69e+38 1.3181999999999998e+38 2.7884999999999998e+38 1.69e+38 1.3181999999999998e+38 2.7884999999999998e+38 2.4500000000000004e-16 3.0000000000000002e-18 5.000000000000001 0.061224489795918366 1.2385220761615874e+30 5.146194622976217e-12 nan nan nan 9.746728636223773e+29 1.6306857977677228e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.601500264808204e+34 nan nan nan True True True 6.203977354562386
+"Swift J1729.5-3223" 5.0 3.0 355.249 1.069 262.3943344 -32.37376601 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 "" 0.0 0.0 0 "" "" "" "" "" C 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "BH?, XT" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 9.986769530699264e-13 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.9872804089624275e+33 nan nan nan False False True 4.869511433037834
+"GRS 1730-312" 5.0 3.0 356.725 0.944 263.468 -31.207 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 3.41072e+37 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" 1.14e-08 0.0 0.0 "" "" "" "" 120.0 120.0 C BHC,T 1994 G,M 1 "" "" "" "" 0.0 0.0 "" "" "" "BH?, XT" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 1.6783953302154232e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.0204798188583957e+33 nan nan nan True True True 3.408194574969203
+"XTE J1719-291" 5.0 3.0 356.745 4.754 259.821 -29.07 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "ArmasPadilla 2011" "" "" nan 2.75e+37 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" 9.2e-09 0.0 0.0 "" "" "" "" 3.8 3.8 C BHC,T 2008 Rx 1 "" "" "" "" 0.0 0.0 "" "" "" 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 3.1097067179402803e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 9.301872770334574e+33 nan nan nan True False False 5.759445351102777
+"SLX 1746-331" 5.0 3.0 356.807 -2.973 267.452 -33.205 L "" 0.0 3.28 > 2.14 0.0 "" 55.0 5.0 5.0 "" 0.0 0.0 Peng23 "" "" nan 4.09885e+37 1.783e+36 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.65 HCS,SDS,IMS 1.37e-08 4.6e+34 4.6e+34 no 3.147e-10 0.0 0.0 18.4 18.4 B BHC,T 1990 S2 5 2 1 "" 3 6598.0 470.0 1619 T successful-only "US, XT, BH?" 1.05e+44 1.2e+43 9e+43 7.81e+42 1.7e+38 1.5e+38 3.9e+38 1.29e+38 8.45e+37 2.12e+38 0.2 0.17 0.38 0.1425 0.09230926281 0.2075385506 4.5e+37 4.4e+37 1.41e+38 3.05e+37 2.31e+37 7.26e+37 1.7e+38 1.5e+38 3.9e+38 1.29e+38 8.45e+37 2.12e+38 nan nan nan nan nan 4.883573642117643e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.4607930844882374e+34 nan nan nan True True True 4.36174557514291
+"4U 1755-33" 6.5 2.5 357.215 -4.872 269.667 -33.808 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 4.4 0.0 "Angelini 2003, Kaaret 2006" "Kaaret 2006" https://ui.adsabs.harvard.edu/abs/2006ApJ...641..410K 137.0917487972467 5.91581e+36 0.0 2400000000.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.17e-09 0.0 0.0 0 "" "" "" 20.0 20.0 B BHC,P 1971 None "" "" "" "" "" 0.0 0.0 0 0 0 "BH?, DS, XT, US" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.3148245109104256e-12 nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.1701882690622494e+34 nan nan nan True True True 5.610160711171131
+"H 1743-322" 10.4 2.9 357.255 -1.833 266.565 -32.234 L "" 0.0 15.0 "" 0.0 0.0 "" 75.0 3.0 3.0 False 0.0 0.0 "Williams 2020, Steiner 2011" "Williams 2020" https://ui.adsabs.harvard.edu/abs/2020MNRAS.491L..29W/abstract 90.0 5.98013e+38 8.51e+37 1280000000.0 2.42 0.06 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 22.17 HCS,SDS,IMS 4.62e-08 5.8e+36 4.3e+36 no 1.503e-08 1.03e-09 7.7e-10 0.17 0.5 B BHC,T,R,J,W 1977 Ar,H 17 6 2 5 13 5501.0 1567.0 304 T combined "RP, US, MQ, XT, BH" 8.13e+44 7.8e+43 3.66e+44 1.34e+43 3.2e+39 2.6e+39 6.8e+39 2.03e+39 5.03e+38 1.34e+39 3.3 2.9 7.7 2.056153846 0.5255490226 1.334167737 3.2e+39 2.6e+39 6.8e+39 1.8e+39 4.83e+38 1.33e+39 2.8e+39 1.4e+39 1.7e+39 3.64e+38 1.17e+38 1.51e+38 1.21e-16 3.0000000000000002e-18 9.453125 0.234375 1.565896319640054e+30 1.1926934685389183e-12 nan nan nan 7.475188483420823e+29 9.914742699726873e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.543499432102333e+34 nan nan nan True True True 3.3003549476199896
+"GRS 1737-31" 5.0 3.0 357.588 -0.099 265.038 -31.04 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 0.0 0.0 "" "" "" nan 1.79512e+36 3.58e+35 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.43 HCS 6e-10 1.2e+34 1.3e+34 yes 0.0 0.0 0.0 30.0 30.0 C BHC,T 1997 G 1 0 0 1 1 6967.0 101.0 >6659 T hard-only "BH?, XT" 2.51e+44 3e+43 2.51e+44 3e+43 3.8e+37 3.2e+37 5.6e+37 3.8e+37 3.2e+37 5.6e+37 0.042 0.035 0.057 0.042 0.035 0.057 3.8e+37 3.2e+37 6e+37 3.8e+37 3.2e+37 6e+37 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 1.9468321386331123e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.823438189295942e+33 nan nan nan True True True 2.4140296621173545
+"IGR J17285-2922" 5.0 3.0 357.651 2.898 262.162 -29.362 L "" 0.0 0.0 "" 0.0 0.0 > 18.0 0.0 0.0 False 9.3 0.0 "Stoop 21" "Stoop 2021" https://ui.adsabs.harvard.edu/abs/2021MNRAS.507..330S/abstract nan 2.51e+36 3.9e+34 4500000000.0 118.0 7.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.25 HCS 8.4e-10 3.7e+34 3.8e+34 no 0.0 0.0 0.0 3.5 3.5 C BHC,T 2004 I 2 0 1 1 2 6980.0 88.0 2148 T hard-only "BH?, RP?, XT" 1.05e+43 2.2e+42 1.05e+43 2.2e+42 1.1e+37 2.7e+37 2.13e+38 1.1e+37 2.7e+37 2.13e+38 0.014 0.029 0.212 0.014 0.029 0.212 7.1e+36 6.1e+36 1.04e+37 7.1e+36 6.1e+36 1.04e+37 0.0 0.0 0.0 0.0 0.0 0.0 5.9000000000000004e-15 3.5e-16 131.11111111111111 7.777777777777779 1.7648303947236722e+31 1.5844325958350717e-12 nan nan nan 1.1302424780404482e+31 1.7552644008302274e+31 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 4.739414921221461e+33 nan nan nan True False True 3.7298120962241885
+"XTE J1755-324" 5.0 3.0 358.039 -3.631 268.869 -32.478 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 False 0.0 0.0 "" "" "" nan 1.02023e+37 3.98e+35 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.77 HCS,SDS,IMS 3.41e-09 1.9e+34 1.9e+34 yes 0.0 0.0 0.0 60.0 60.0 C BHC,T 1997 Rx 1 1 0 0 1 6943.0 125.0 >6519 T successful-only 0 2.57e+44 3.8e+43 2.57e+44 3.8e+43 7.3e+37 6.4e+37 1.44e+38 7.3e+37 6.4e+37 1.44e+38 0.079 0.066 0.147 0.079 0.066 0.147 3.3e+37 3e+37 6.8e+37 3.3e+37 3e+37 6.8e+37 7.3e+37 6.4e+37 1.44e+38 7.3e+37 6.4e+37 1.44e+38 nan nan nan nan nan 2.2899687873814457e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.849841557524214e+33 nan nan nan True True False 4.126079517922268
+"KS 1739-304" 5.0 3.0 358.327 -0.292 265.6826085 -30.51436784 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 "" 0.0 0.0 0 "" "" "" "" "" C 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 "BH?, XT" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 1.0965824252307278e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.280138973503368e+33 nan nan nan False False True 1.6982840653082527
+"H 1705-250" 8.6 2.1 358.587 9.057 257.06 -25.092 L 0.45 0.0 8.92 "" 3.56 3.56 False 64.0 16.0 16.0 False 12.5 0.03 "" "" "" nan 1.54895e+38 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.75e-08 0.0 0.0 0 "" "" "" 3.0 2.0 A BH,T 1977 Ar,H 1 "" "" "" "" 0.0 0.0 0 0 0 "XT, BH" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan nan nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 9.165651083200473
+"IGR J17451-3022" 5.0 3.0 358.712 -0.658 266.278 -30.379 L 0.5-0.8 0.0 0.0 "" 0.0 0.0 "" 73.5 2.5 2.5 "" 6.284 0.001 "Zdziarski 2016" "" "" nan 5.68454e+35 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 1.9e-10 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 3.8829520893362744e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.1614833675451601e+34 nan nan nan False True False 1.4463177607605346
+"1E 1740.7-2942" 5.0 3.0 359.116 -0.106 265.978 -29.745 H "" 0.0 0.0 "" 0.0 0.0 "" 65.0 0.0 0.0 False 305.52 0.0 "Luque-Escamilla 2015, Mirabel 1992, Gallo 2002 for xray" "Mirabel 1992" https://ui.adsabs.harvard.edu/abs/1992Natur.358..215M 339.0 1.38e+35 5.56e+37 5000000000.0 0.47 0.07 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 85.77 "" 4.6e-11 3.9e+36 3.1e+36 no 9.81e-09 7e-10 5.5e-10 0.1 0.1 B BHC,P,R,J 1984 E 0 "" "" "" "" 1006.0 6062.0 "" P mainly-HCS BH,MQ 3.04e+45 9.8e+43 7.41e+44 1.64e+43 5.2e+39 4.9e+39 1.7e+40 1.6e+39 8.95e+38 3.39e+39 6.0 5.5 16.9 1.831357143 1.007210867 3.355947517 5.2e+39 4.9e+39 1.7e+40 1.34e+39 8.61e+38 3.24e+39 8.4e+37 8.5e+37 3.51e+38 1.4e+37 1.23e+37 5.05e+37 2.35e-17 3.500000000000001e-18 0.47 0.07 7.029409199323101e+28 2.1988613693432545e-12 nan nan nan 4.558680759492184e+28 6.792885654678213e+28 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 6.577317590509644e+33 nan nan nan True False True 0.8903320214545583
+"MAXI J1744-294" 8.0 0.3 359.443 -0.041 266.112 -29.433 L "" 0.0 0.0 "" 0.0 0.0 "" 28.0 3.0 4.0 "" 0.0 0.0 "Grollimund 25 (Ate #17045l), Mandel et al 2026" "Grollimund 2025" https://ui.adsabs.harvard.edu/abs/2025ATel17045....1G nan 3.06e+37 0.0 1280000000.0 110.0 50.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 4e-09 0.0 0.0 0 "" "" "" "" "" B 0 "" 0 "" "" "" "" "" 0.0 0.0 0 0 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.5e-15 2.5e-15 429.6875 195.3125 4.211663043679543e+31 3.4062973632602244e-12 nan nan nan 1.924611472155776e+31 1.952088235043644e+31 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.6083957673865745e+34 nan nan nan False True False 0.5585068907758706
+"IGR J17454-2919" 5.0 3.0 359.644 -0.177 266.365 -29.332 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "" "" "" nan 8.31738e+35 1.19e+34 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" N/A 2.78e-10 1.4e+33 1.2e+33 yes 0.0 0.0 0.0 5.0 5.0 C BHC,T 2014 I 1 "" 1 "" 1 0.0 0.0 >6853 T undefined "BH?, XT" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan nan 4.016204074440449e-12 nan nan nan 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.2013422071161962e+34 nan nan nan True True True 0.3975733854728196
+"XTE J1817-330" 5.5 4.5 359.817 -7.996 274.431 -33.019 L "" 0.0 0.0 "" 0.0 0.0 "" nan 0.0 0.0 "" 0.0 0.0 "Rupen 06 (Atel)" "Rupen 2006" https://ui.adsabs.harvard.edu/abs/2006ATel..717....1R nan 1.78836e+38 2.4442e+36 4860000000.0 0.83 0.12 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 3.58 HCS,SDS,IMS 4.94e-08 2.4199999999999997e+35 1.936e+35 yes 3.56e-10 0.0 0.0 30.0 30.0 B BHC,T,R,W 2006 Rx 1 1 "" "" 1 6815.0 253.0 >3656 T successful-only "RP, XT, BH?" 2.9887e+43 5.324e+42 2.9887e+43 5.324e+42 1.573e+39 1.573e+39 7.018000000000001e+39 1.573e+39 1.573e+39 7.018000000000001e+39 1.573 1.573 6.534 1.573 1.573 6.534 2.5409999999999998e+38 2.42e+38 1.1737e+39 2.5409999999999998e+38 2.42e+38 1.1737e+39 1.573e+39 1.573e+39 7.018000000000001e+39 1.573e+39 1.573e+39 7.018000000000001e+39 4.150000000000001e-17 6.000000000000001e-18 0.8539094650205763 0.12345679012345681 1.5020501401872746e+29 nan nan nan nan 1.3300136989956272e+29 3.4697334958843136e+29 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 nan nan nan nan True True True 7.998080226290749
+"1A 1742-289" 5.0 3.0 359.929 -0.042 266.404 -29.019 L "" 0.0 0.0 "" 0.0 0.0 False nan 0.0 0.0 False 0.0 0.0 "Fender 2001" "Fender 2001" https://ui.adsabs.harvard.edu/abs/2001MNRAS.324..923F nan 0.0 0.0 5000000000.0 215.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" "" "" 0.0 0.0 "" "" "" "" 3.0 3.0 B BHC,T,R 1975 Ar 1 "" "" "" "" 0.0 0.0 "" "" "" 0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.075e-14 1.075e-16 215.0 2.15 3.2155808039456734e+31 1.8140746635324925e-11 nan nan nan 2.0818179120981227e+31 3.216788558819847e+31 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.4263289906784085e+34 nan nan nan True False False 0.08249241842186085
+"CXOGC J174540.0-290031" 5.0 3.0 359.944 -0.047 266.417 -29.009 L "" 0.0 0.0 "" 0.0 0.0 "" 82.5 7.5 0.0 "" 7.9 0.0 "Bower 2005, Porquet 2005" "Bower 2005" https://ui.adsabs.harvard.edu/abs/2005ApJ...633..218B 190.0 1.48995e+34 0.0 4900000000.0 28.0 2.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 "" 0 0.0 0.0 0.0 0 "" "" "" 0.3 0.3 B BHC,T,R,J? 2004 CH 1 "" "" "" "" 0.0 0.0 0 0 0 "RP?, XT, MQ?, EB, BH?" 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.4e-15 1e-16 28.571428571428573 2.0408163265306123 4.187733140022273e+30 1.8396118390840275e-11 nan nan nan 2.72072412150544e+30 4.058865220949626e+30 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 5.5027167595067875e+34 nan nan nan True True True 0.07310950209508933

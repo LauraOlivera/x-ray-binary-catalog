@@ -9,7 +9,7 @@ In particular, it merges information from the WATCHDOG catalogue (Tetarenko et a
 The easiest way to read the file while conveniently retaining all the metadata is as an `astropy.table.Table` as
 
 ```python
-from astropy.table import table
+from astropy.table import Table
 table = Table.read("BHXRB_candidate_table_OliveraNieto2026.ecsv")
 ```
 
